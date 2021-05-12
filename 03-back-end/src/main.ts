@@ -24,6 +24,7 @@ const categoryService: CategoryService = new CategoryService();
 const categoryController: CategoryController = new CategoryController(categoryService);
 
 application.get("/category", categoryController.getAll.bind(categoryController));
+application.get("/category/:id", categoryController.getById.bind(categoryController));
 
 application.use((req, res) => {
     res.sendStatus(404);
