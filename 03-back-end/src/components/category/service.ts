@@ -1,6 +1,7 @@
 import CategoryModel from './model';
 import * as mysql2 from 'mysql2/promise';
 import IModelAdapterOptions from '../../common/IModelAdapterOptions.interface';
+import IErrorResponse from '../../common/IErrorResponse.interface';
 
 class CategoryService {
     private db: mysql2.Connection;
@@ -21,77 +22,118 @@ class CategoryService {
         item.parentCategoryId = row?.parent__category_id;
 
         if (options.loadParent && item.parentCategoryId !== null) {
-            item.parentCategory = await this.getById(item.parentCategoryId);
+            const data = await this.getById(item.parentCategoryId);
+
+            if (data instanceof CategoryModel) {
+                item.parentCategory = data;
+            }
         }
 
         if (options.loadChildren) {
-            item.subcategories = await this.getAllByParentCategoryId(item.categoryId);
+            const data = await this.getAllByParentCategoryId(item.categoryId);
+
+            if (Array.isArray(data)) {
+                item.subcategories = data;
+            }
         }
 
         return item;
     }
 
-    public async getAll(): Promise<CategoryModel[]> {
-        const lista: CategoryModel[] = [];
+    public async getAll(): Promise<CategoryModel[]|IErrorResponse> {
+        // Način sa obećanjima
+        return new Promise<CategoryModel[]|IErrorResponse>(async (resolve) => {
+            const sql: string = "SELECT * FROM category WHERE parent__category_id IS NULL;";
+            this.db.execute(sql)
+                .then(async result => {
+                    const rows = result[0]; // Raspakivanje po indeksu
+                    const lista: CategoryModel[] = [];
 
-        const sql: string = "SELECT * FROM category WHERE parent__category_id IS NULL;";
-        const [ rows, columns ] = await this.db.execute(sql);
+                    if (Array.isArray(rows)) {
+                        for (const row of rows) {
+                            lista.push(
+                                await this.adaptModel(
+                                    row, {
+                                        loadChildren: true,
+                                    },
+                                )
+                            )
+                        }
+                    }
 
-        if (Array.isArray(rows)) {
-            for (const row of rows) {
-                lista.push(
-                    await this.adaptModel(
-                        row, {
-                            loadChildren: true,
-                        },
-                    )
-                )
-            }
-        }
-
-        return lista;
+                    resolve(lista);
+                })
+                .catch(error => {
+                    resolve({
+                        errorCode: error?.errno,
+                        errorMessage: error?.sqlMessage
+                    });
+                });
+        });
     }
 
-    public async getAllByParentCategoryId(parentCategoryId: number): Promise<CategoryModel[]> {
-        const lista: CategoryModel[] = [];
+    public async getAllByParentCategoryId(parentCategoryId: number): Promise<CategoryModel[]|IErrorResponse> {
+        try { // Način sa try-catch
+            const lista: CategoryModel[] = [];
 
-        const sql: string = "SELECT * FROM category WHERE parent__category_id = ?;";
-        const [ rows, columns ] = await this.db.execute(sql, [ parentCategoryId ]);
+            const sql: string = "SELECT * FROM category WHERE parent__category_id = ?;";
+            const [ rows, columns ] = await this.db.execute(sql, [ parentCategoryId ]);
 
-        if (Array.isArray(rows)) {
-            for (const row of rows) {
-                lista.push(
-                    await this.adaptModel(
-                        row, {
-                            loadChildren: true,
-                        },
+            if (Array.isArray(rows)) {
+                for (const row of rows) {
+                    lista.push(
+                        await this.adaptModel(
+                            row, {
+                                loadChildren: true,
+                            },
+                        )
                     )
-                )
+                }
             }
-        }
 
-        return lista;
+            return lista;
+        } catch (error) {
+            return {
+                errorCode: error?.errno,
+                errorMessage: error?.sqlMessage
+            };
+        }
     }
 
-    public async getById(categoryId: number): Promise<CategoryModel|null> {
-        const sql: string = "SELECT * FROM category WHERE category_id = ?;";
-        const [ rows, columns ] = await this.db.execute(sql, [ categoryId ]);
+    public async getById(categoryId: number): Promise<CategoryModel|null|IErrorResponse> {
+        // Način sa obećanjima
+        return new Promise<CategoryModel|null|IErrorResponse>(async resolve => {
+            const sql: string = "SELECT * FROM category WHERE category_id = ?;";
+            this.db.execute(sql, [ categoryId ])
+                .then(async result => {
+                    // Raspakivanje elemenata niza u promenljiva
+                    const [ rows, columns ] = result;
 
-        if (!Array.isArray(rows)) {
-            return null;
-        }
+                    if (!Array.isArray(rows)) {
+                        resolve(null);
+                        return;
+                    }
+            
+                    if (rows.length === 0) {
+                        resolve(null);
+                        return;
+                    }
 
-        if (rows.length === 0) {
-            return null;
-        }
-
-        return await this.adaptModel(
-            rows[0],
-            {
-                loadChildren: true,
-                loadParent: true,
-            }
-        );
+                    resolve(await this.adaptModel(
+                        rows[0],
+                        {
+                            loadChildren: true,
+                            loadParent: true,
+                        }
+                    ));
+                })
+                .catch(error => {
+                    resolve({
+                        errorCode: error?.errno,
+                        errorMessage: error?.sqlMessage
+                    });
+                });
+        });
     }
 }
 
