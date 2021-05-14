@@ -13,7 +13,9 @@ class CategoryController {
     }
 
     async getAll(req: Request, res: Response, next: NextFunction) {
-        const categories = await this.categoryService.getAll();
+        const categories = await this.categoryService.getAll({
+            loadSubcategories: true,
+        });
 
         res.send(categories);
     }
@@ -28,7 +30,12 @@ class CategoryController {
             return;
         }
 
-        const data: CategoryModel|null|IErrorResponse = await this.categoryService.getById(categoryId);
+        const data: CategoryModel|null|IErrorResponse = await this.categoryService.getById(
+            categoryId,
+            {
+                loadSubcategories: true,
+            }
+        );
 
         if (data === null) {
             res.sendStatus(404);
@@ -73,7 +80,13 @@ class CategoryController {
             return;
         }
 
-        const result = await this.categoryService.edit(categoryId, data as IEditCategory);
+        const result = await this.categoryService.edit(
+            categoryId,
+            data as IEditCategory,
+            {
+                loadSubcategories: true,
+            }
+        );
 
         if (result === null) {
             res.sendStatus(404);
