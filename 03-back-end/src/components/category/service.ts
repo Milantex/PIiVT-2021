@@ -3,6 +3,7 @@ import IModelAdapterOptions from '../../common/IModelAdapterOptions.interface';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IAddCategory } from './dto/AddCategory';
 import BaseService from '../../services/BaseService';
+import { IEditCategory } from './dto/EditCategory';
 
 class CategoryService extends BaseService<CategoryModel> {
     protected async adaptModel(
@@ -78,6 +79,40 @@ class CategoryService extends BaseService<CategoryModel> {
 
                     const newCategoryId: number = +(insertInfo?.insertId);
                     resolve(await this.getById(newCategoryId));
+                })
+                .catch(error => {
+                    resolve({
+                        errorCode: error?.errno,
+                        errorMessage: error?.sqlMessage
+                    });
+                });
+        });
+    }
+
+    public async edit(categoryId: number, data: IEditCategory): Promise<CategoryModel|IErrorResponse|null> {
+        const result = await this.getById(categoryId);
+
+        if (result === null) {
+            return null;
+        }
+
+        if (!(result instanceof CategoryModel)) {
+            return result;
+        }
+
+        return new Promise<CategoryModel|IErrorResponse>(async resolve => {
+            const sql = `
+                UPDATE
+                    category
+                SET
+                    name = ?,
+                    image_path = ?
+                WHERE
+                    category_id = ?;`;
+
+            this.db.execute(sql, [ data.name, data.imagePath, categoryId ])
+                .then(async result => {
+                    resolve(await this.getById(categoryId));
                 })
                 .catch(error => {
                     resolve({
