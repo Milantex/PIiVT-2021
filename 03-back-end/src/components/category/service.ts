@@ -4,7 +4,6 @@ import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IAddCategory } from './dto/AddCategory';
 import BaseService from '../../services/BaseService';
 import { IEditCategory } from './dto/EditCategory';
-import { resolve } from 'path';
 
 class CategoryModelAdapterOptions implements IModelAdapterOptions {
     loadParentCategory: boolean = false;
