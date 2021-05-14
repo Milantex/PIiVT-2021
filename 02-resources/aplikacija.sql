@@ -110,9 +110,20 @@ CREATE TABLE IF NOT EXISTS `category` (
   UNIQUE KEY `uq_category_name` (`name`),
   KEY `fk_category_parent__category_id` (`parent__category_id`),
   CONSTRAINT `fk_category_parent__category_id` FOREIGN KEY (`parent__category_id`) REFERENCES `category` (`category_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` (`category_id`, `name`, `image_path`, `parent__category_id`) VALUES
+	(1, 'Računarske komponente', '/static/categories/pc.png', NULL),
+	(2, 'Računarski softver', '/static/categories/cd.png', NULL),
+	(3, 'Matične poloče', '/static/categories/mb.jpg', 1),
+	(4, 'Hard diskovi', '/static/categories/hdd.jpg', 1),
+	(5, 'Magnetni diskovi', '/static/categories/hdd-classic.png', 4),
+	(6, 'SSD diskovi', '/static/categories/hdd-ssd.png', 4),
+	(7, 'M2 diskovi', '/static/categories/hdd-m2.png', 4),
+	(8, 'Aplikacije', '/static/categories/apps.png', 2),
+	(9, 'Video igre', '/static/categories/games.png', 2),
+	(10, 'Operativni sistemi', '/static/categories/os.png', 2);
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `feature`;
@@ -124,9 +135,18 @@ CREATE TABLE IF NOT EXISTS `feature` (
   UNIQUE KEY `uq_feature_name_category_id` (`name`,`category_id`),
   KEY `fk_feature_category_id` (`category_id`),
   CONSTRAINT `fk_feature_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40000 ALTER TABLE `feature` DISABLE KEYS */;
+INSERT INTO `feature` (`feature_id`, `name`, `category_id`) VALUES
+	(2, 'Dimenzije', 4),
+	(8, 'Godina izdanja', 2),
+	(1, 'Kapacitet (GB)', 4),
+	(5, 'Model', 1),
+	(7, 'Produkciona kuća', 2),
+	(4, 'Proizvođač', 1),
+	(6, 'Tehnologija', 6),
+	(3, 'Tip konektora', 4);
 /*!40000 ALTER TABLE `feature` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `order`;

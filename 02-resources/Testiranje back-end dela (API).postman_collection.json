@@ -1,0 +1,1384 @@
+{
+	"info": {
+		"_postman_id": "2eae1b2a-f97b-44dd-abd4-3a1809d80b67",
+		"name": "Testiranje back-end dela (API)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "GET all categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/category",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "281"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"119-EURSVlThb2oSBKNAvQK5gxk+S/s\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 May 2021 11:09:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"categoryId\": 1,\n        \"name\": \"Category A\",\n        \"imagePath\": \"static/categories/1.png\",\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subcategories\": []\n    },\n    {\n        \"categoryId\": 2,\n        \"name\": \"Category B\",\n        \"imagePath\": \"static/categories/2.png\",\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subcategories\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET a single category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/category/11",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category",
+								"11"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET a single category - for an existing category ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "139"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8b-anRlJmCDdZazQhRGuW/p8Aybj1c\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 May 2021 11:27:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"categoryId\": 1,\n    \"name\": \"Category A\",\n    \"imagePath\": \"static/categories/1.png\",\n    \"parentCategoryId\": null,\n    \"parentCategory\": null,\n    \"subcategories\": []\n}"
+						},
+						{
+							"name": "GET a single category - with an invalid category ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/-2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"-2"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "11"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b-EFiDB1U+dmqzx9Mo2UjcZ1SJPO8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 May 2021 11:27:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Bad Request"
+						},
+						{
+							"name": "GET a single category - with an ID of a non existing category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/78",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"78"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 May 2021 11:27:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "POST a new category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test cat\",\r\n    \"imagePath\": \"/static/categories/test.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/category",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new category - with a valid data structure",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Operativni sistemi\",\r\n    \"imagePath\": \"/static/categories/os.png\",\r\n    \"parentCategoryId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/category",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "723"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d3-T5Sc9ZaZDDsWnwahoBuR+K9+o2c\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 May 2021 14:42:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"parentCategoryId\": 2,\n    \"parentCategory\": {\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subcategories\": [\n            {\n                \"parentCategoryId\": 2,\n                \"parentCategory\": null,\n                \"subcategories\": [],\n                \"categoryId\": 8,\n                \"name\": \"Aplikacije\",\n                \"imagePath\": \"/static/categories/apps.png\"\n            },\n            {\n                \"parentCategoryId\": 2,\n                \"parentCategory\": null,\n                \"subcategories\": [],\n                \"categoryId\": 9,\n                \"name\": \"Video igre\",\n                \"imagePath\": \"/static/categories/games.png\"\n            },\n            {\n                \"parentCategoryId\": 2,\n                \"parentCategory\": null,\n                \"subcategories\": [],\n                \"categoryId\": 10,\n                \"name\": \"Operativni sistemi\",\n                \"imagePath\": \"/static/categories/os.png\"\n            }\n        ],\n        \"categoryId\": 2,\n        \"name\": \"Računarski softver\",\n        \"imagePath\": \"/static/categories/cd.png\"\n    },\n    \"subcategories\": [],\n    \"categoryId\": 10,\n    \"name\": \"Operativni sistemi\",\n    \"imagePath\": \"/static/categories/os.png\"\n}"
+						},
+						{
+							"name": "POST a new category - with a valid data structure without a parent category ID",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Usluge razvoja softvera\",\r\n    \"imagePath\": \"/static/categories/dev.png\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/category",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "156"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9c-JGcBN47wwhTh2EwVdf/VqEcxP+s\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 May 2021 14:43:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"parentCategoryId\": null,\n    \"parentCategory\": null,\n    \"subcategories\": [],\n    \"categoryId\": 11,\n    \"name\": \"Usluge razvoja softvera\",\n    \"imagePath\": \"/static/categories/dev.png\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT to edit an existing category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Hard diskovi\",\r\n    \"imagePath\": \"/static/categories/hdd.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/category/4",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT to edit an existing category - valid response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Razvoj softvera\",\r\n    \"imagePath\": \"/static/categories/sdev.png\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/category/11",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"11"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "149"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"95-gicl3td4bR96EoRNxtcmbKZeEtc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 May 2021 11:41:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"parentCategoryId\": null,\n    \"parentCategory\": null,\n    \"subcategories\": [],\n    \"categoryId\": 11,\n    \"name\": \"Razvoj softvera\",\n    \"imagePath\": \"/static/categories/sdev.png\"\n}"
+						},
+						{
+							"name": "PUT to edit an existing category - with a non existing category ID",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Razvoj softvera\",\r\n    \"imagePath\": \"/static/categories/sdev.png\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/category/98",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"98"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 May 2021 11:42:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						},
+						{
+							"name": "PUT to edit an existing category - with invalid data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Razvoj softvera\",\r\n    \"imagePath\": \"/static/categories/sdev.git\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/category/11",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"11"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "179"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b3-RVtC0io0KKusPUb85vIPeyOEc50\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 May 2021 11:42:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"instancePath\": \"/imagePath\",\n        \"schemaPath\": \"#/properties/imagePath/pattern\",\n        \"keyword\": \"pattern\",\n        \"params\": {\n            \"pattern\": \".(png|jpg)$\"\n        },\n        \"message\": \"must match pattern \\\".(png|jpg)$\\\"\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "DELETE a category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/category/4",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE a category with a non-existing ID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/111",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"111"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "93"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5d-rEcAeLHHZzwz3xXTABzbxX4ny9I\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 May 2021 14:00:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": -1,\n    \"errorMessage\": \"This record could not be deleted because it does not exist.\"\n}"
+						},
+						{
+							"name": "DELETE a category - with an existing ID without subcategories",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/13",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"13"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-3Woi6Y4X+M3qVvsIQ1xzM++GrlM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 May 2021 14:01:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"One record deleted.\"\n}"
+						},
+						{
+							"name": "DELETE a category - with an existing ID with subcategories",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/4",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "96"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"60-KQn45nxzF2CIhtX5GI3LWvmB9vk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 May 2021 14:01:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": -2,\n    \"errorMessage\": \"This record could not be deleted beucase it has subcategories.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Feature",
+			"item": [
+				{
+					"name": "GET a single feature",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/feature/1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"feature",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET a single feature",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/feature/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"feature",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "202"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ca-QrnYPXuc9L49wsZiOsFXMEGX/oQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 May 2021 15:32:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"categoryId\": 4,\n    \"category\": {\n        \"parentCategoryId\": 1,\n        \"parentCategory\": null,\n        \"subcategories\": [],\n        \"categoryId\": 4,\n        \"name\": \"Hard diskovi\",\n        \"imagePath\": \"/static/categories/hdd.jpg\"\n    },\n    \"featureId\": 2,\n    \"name\": \"Dimenzije\"\n}"
+						},
+						{
+							"name": "GET a single feature - with a non-existing feature ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/feature/98",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"feature",
+										"98"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 May 2021 15:33:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "GET all features of a category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/category/6/feature",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category",
+								"6",
+								"feature"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all features of a category - with parent category features",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/6/feature",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"6",
+										"feature"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "407"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"197-fZo0uuJt6kRtfIwzInYuTPyqxHA\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 May 2021 15:31:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"categoryId\": 6,\n        \"category\": null,\n        \"featureId\": 6,\n        \"name\": \"Tehnologija\"\n    },\n    {\n        \"categoryId\": 4,\n        \"category\": null,\n        \"featureId\": 1,\n        \"name\": \"Kapacitet (GB)\"\n    },\n    {\n        \"categoryId\": 4,\n        \"category\": null,\n        \"featureId\": 2,\n        \"name\": \"Dimenzije\"\n    },\n    {\n        \"categoryId\": 4,\n        \"category\": null,\n        \"featureId\": 3,\n        \"name\": \"Tip konektora\"\n    },\n    {\n        \"categoryId\": 1,\n        \"category\": null,\n        \"featureId\": 4,\n        \"name\": \"Proizvođač\"\n    },\n    {\n        \"categoryId\": 1,\n        \"category\": null,\n        \"featureId\": 5,\n        \"name\": \"Model\"\n    }\n]"
+						},
+						{
+							"name": "GET all features of a category - with a non-existing category ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/78/feature",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"78",
+										"feature"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 May 2021 15:33:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						}
+					]
+				},
+				{
+					"name": "POST a new feature",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Godina izdanja\",\r\n    \"categoryId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/feature",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"feature"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new feature",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Godina izdanja\",\r\n    \"categoryId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/feature",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"feature"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"46-VKsLUz6NHRt5gc0heMqCr1ZMq6g\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 May 2021 15:34:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"categoryId\": 2,\n    \"category\": null,\n    \"featureId\": 8,\n    \"name\": \"Godina izdanja\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT to edit an existing feature",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Produkciona kuća\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/feature/7",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"feature",
+								"7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT to edit an existing feature",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Produkciona kuća\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/feature/7",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"feature",
+										"7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "219"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"db-6sc0t1TNupTuqLMjTtHYwX1dnKc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 May 2021 15:34:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"categoryId\": 2,\n    \"category\": {\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subcategories\": [],\n        \"categoryId\": 2,\n        \"name\": \"Računarski softver\",\n        \"imagePath\": \"/static/categories/cd.png\"\n    },\n    \"featureId\": 7,\n    \"name\": \"Produkciona kuća\"\n}"
+						},
+						{
+							"name": "PUT to edit an existing feature - with a non-existing feature ID",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Produkciona kuća\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/feature/77",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"feature",
+										"77"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 May 2021 15:34:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_URL",
+			"value": "http://localhost:40080"
+		}
+	]
+}
