@@ -4,6 +4,7 @@ import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IAddCategory } from './dto/AddCategory';
 import BaseService from '../../services/BaseService';
 import { IEditCategory } from './dto/EditCategory';
+import { resolve } from 'path';
 
 class CategoryModelAdapterOptions implements IModelAdapterOptions {
     loadParentCategory: boolean = false;
@@ -142,6 +143,43 @@ class CategoryService extends BaseService<CategoryModel> {
                         errorMessage: error?.sqlMessage
                     });
                 });
+        });
+    }
+
+    public async delete(categoryId: number): Promise<IErrorResponse> {
+        return new Promise<IErrorResponse>(resolve => {
+            const sql = "DELETE FROM category WHERE category_id = ?;";
+            this.db.execute(sql, [categoryId])
+                .then(async result => {
+                    const deleteInfo: any = result[0];
+                    const deletedRowCount: number = +(deleteInfo?.affectedRows);
+
+                    if (deletedRowCount === 1) {
+                        resolve({
+                            errorCode: 0,
+                            errorMessage: "One record deleted."
+                        });
+                    } else {
+                        resolve({
+                            errorCode: -1,
+                            errorMessage: "This record could not be deleted because it does not exist."
+                        });
+                    }
+                })
+                .catch(error => {
+                    if (error?.errno === 1451) {
+                        resolve({
+                            errorCode: -2,
+                            errorMessage: "This record could not be deleted beucase it has subcategories."
+                        });
+                        return;
+                    }
+
+                    resolve({
+                        errorCode: error?.errno,
+                        errorMessage: error?.sqlMessage
+                    });
+                })
         });
     }
 }
