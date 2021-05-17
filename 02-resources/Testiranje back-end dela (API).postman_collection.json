@@ -87,13 +87,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{API_URL}}/category/11",
+							"raw": "{{API_URL}}/category/4",
 							"host": [
 								"{{API_URL}}"
 							],
 							"path": [
 								"category",
-								"11"
+								"4"
 							]
 						}
 					},
@@ -1349,6 +1349,255 @@
 							],
 							"cookie": [],
 							"body": "Not Found"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Article",
+			"item": [
+				{
+					"name": "GET a single article",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/article/1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"article",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET a single article",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/article/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "996"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e4-Ik7JSSIOFw3hIqtSOrg9NQ19oaU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 13:44:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"prices\": [\n        {\n            \"priceId\": 1,\n            \"createdAt\": \"2021-05-17T14:33:23.000Z\",\n            \"price\": 43.45\n        },\n        {\n            \"priceId\": 2,\n            \"createdAt\": \"2021-05-17T14:36:11.000Z\",\n            \"price\": 45.43\n        }\n    ],\n    \"photos\": [\n        {\n            \"photoId\": 1,\n            \"imagePath\": \"static/uploads/2021/05/1.jpg\"\n        },\n        {\n            \"photoId\": 2,\n            \"imagePath\": \"static/uploads/2021/05/1-all.jpg\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 1,\n            \"name\": \"Kapacitet (GB)\",\n            \"value\": \"500\"\n        },\n        {\n            \"featureId\": 2,\n            \"name\": \"Dimenzije\",\n            \"value\": \"2,5\\\"\"\n        },\n        {\n            \"featureId\": 3,\n            \"name\": \"Tip konektora\",\n            \"value\": \"SATA3\"\n        },\n        {\n            \"featureId\": 4,\n            \"name\": \"Proizvođač\",\n            \"value\": \"ACME\"\n        },\n        {\n            \"featureId\": 5,\n            \"name\": \"Model\",\n            \"value\": \"MRT\"\n        },\n        {\n            \"featureId\": 6,\n            \"name\": \"Tehnologija\",\n            \"value\": \"NAND\"\n        }\n    ],\n    \"articleId\": 1,\n    \"title\": \"ACME disk 500 MRT\",\n    \"excerpt\": \"kratak opis diska.\",\n    \"description\": \"Detaljan opis karakteristika.\",\n    \"isActive\": true,\n    \"isPromoted\": true,\n    \"createdAt\": \"2021-05-17T14:33:10.000Z\",\n    \"categoryId\": 6,\n    \"currentPrice\": 45.43,\n    \"category\": {\n        \"parentCategoryId\": 4,\n        \"parentCategory\": null,\n        \"subcategories\": [],\n        \"features\": [],\n        \"categoryId\": 6,\n        \"name\": \"SSD diskovi\",\n        \"imagePath\": \"/static/categories/hdd-ssd.png\"\n    }\n}"
+						},
+						{
+							"name": "GET a single article - with a non-existing article ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/article/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"2"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 13:44:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "POST a new article",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "data",
+									"value": "{\n    \"title\": \"Softver za video produkciju 2\",\n    \"excerpt\": \"Ovo je kratak opis 2...\",\n    \"description\": \"Ovo je detaljan opis 2...\",\n    \"isActive\": true,\n    \"isPromoted\": true,\n    \"price\": 359.99,\n    \"categoryId\": 2,\n    \"features\": [\n\t\t{\n\t\t\t\"featureId\": 7,\n\t\t\t\"value\": \"ACME\"\n\t\t},\n\t\t{\n\t\t\t\"featureId\": 8,\n\t\t\t\"value\": \"2020\"\n\t\t}\n\t]\n}",
+									"type": "text"
+								},
+								{
+									"key": "photo1",
+									"type": "file",
+									"src": "/C:/Users/mtair/Desktop/PIiVT/Node.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/article",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"article"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new article",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "data",
+											"value": "{\n    \"title\": \"Softver za video produkciju 2\",\n    \"excerpt\": \"Ovo je kratak opis 2...\",\n    \"description\": \"Ovo je detaljan opis 2...\",\n    \"isActive\": true,\n    \"isPromoted\": true,\n    \"price\": 359.99,\n    \"categoryId\": 2,\n    \"features\": [\n\t\t{\n\t\t\t\"featureId\": 7,\n\t\t\t\"value\": \"ACME\"\n\t\t},\n\t\t{\n\t\t\t\"featureId\": 8,\n\t\t\t\"value\": \"2020\"\n\t\t}\n\t]\n}",
+											"type": "text"
+										},
+										{
+											"key": "photo1",
+											"type": "file",
+											"src": "/C:/Users/mtair/Desktop/PIiVT/Node.png"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/article",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "665"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"299-7dow7xhMxzprM9I4dBLoFSwFxS8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 15:31:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"prices\": [],\n    \"photos\": [\n        {\n            \"photoId\": 3,\n            \"imagePath\": \"static/uploads/2021/50/679aa15e-db96-4044-b10d-4a259e2901e7-Node.png\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 7,\n            \"name\": \"Produkciona kuća\",\n            \"value\": \"ACME\"\n        },\n        {\n            \"featureId\": 8,\n            \"name\": \"Godina izdanja\",\n            \"value\": \"2020\"\n        }\n    ],\n    \"articleId\": 3,\n    \"title\": \"Softver za video produkciju 2\",\n    \"excerpt\": \"Ovo je kratak opis 2...\",\n    \"description\": \"Ovo je detaljan opis 2...\",\n    \"isActive\": true,\n    \"isPromoted\": true,\n    \"createdAt\": \"2021-05-17T16:31:31.000Z\",\n    \"categoryId\": 2,\n    \"currentPrice\": 359.99,\n    \"category\": {\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subcategories\": [],\n        \"features\": [],\n        \"categoryId\": 2,\n        \"name\": \"Računarski softver\",\n        \"imagePath\": \"/static/categories/cd.png\"\n    }\n}"
 						}
 					]
 				}

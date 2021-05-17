@@ -5,11 +5,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-DROP DATABASE IF EXISTS `aplikacija`;
 CREATE DATABASE IF NOT EXISTS `aplikacija` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 USE `aplikacija`;
 
-DROP TABLE IF EXISTS `administrator`;
 CREATE TABLE IF NOT EXISTS `administrator` (
   `administrator_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -22,7 +20,6 @@ CREATE TABLE IF NOT EXISTS `administrator` (
 /*!40000 ALTER TABLE `administrator` DISABLE KEYS */;
 /*!40000 ALTER TABLE `administrator` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (
   `article_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -36,12 +33,16 @@ CREATE TABLE IF NOT EXISTS `article` (
   UNIQUE KEY `uq_article_title` (`title`),
   KEY `fk_article_category_id` (`category_id`),
   CONSTRAINT `fk_article_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
+INSERT INTO `article` (`article_id`, `created_at`, `title`, `excerpt`, `description`, `is_active`, `is_promoted`, `category_id`) VALUES
+	(1, '2021-05-17 15:33:10', 'ACME disk 500 MRT', 'kratak opis diska.', 'Detaljan opis karakteristika.', 1, 1, 6),
+	(2, '2021-05-17 17:04:19', 'Softver za video produkciju', 'Ovo je kratak opis...', 'Ovo je detaljan opis...', 1, 0, 2),
+	(3, '2021-05-17 17:31:31', 'Softver za video produkciju 2', 'Ovo je kratak opis 2...', 'Ovo je detaljan opis 2...', 1, 1, 2),
+	(4, '2021-05-17 17:32:57', 'Softver za video produkciju 3', 'Ovo je kratak opis 3...', 'Ovo je detaljan opis 3...', 1, 1, 2);
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `article_feature`;
 CREATE TABLE IF NOT EXISTS `article_feature` (
   `article_feature_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `value` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -52,12 +53,24 @@ CREATE TABLE IF NOT EXISTS `article_feature` (
   KEY `fk_article_feature_feature_id` (`feature_id`),
   CONSTRAINT `fk_article_feature_article_id` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_article_feature_feature_id` FOREIGN KEY (`feature_id`) REFERENCES `feature` (`feature_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40000 ALTER TABLE `article_feature` DISABLE KEYS */;
+INSERT INTO `article_feature` (`article_feature_id`, `value`, `article_id`, `feature_id`) VALUES
+	(1, '500', 1, 1),
+	(2, '2,5"', 1, 2),
+	(3, 'SATA3', 1, 3),
+	(4, 'ACME', 1, 4),
+	(5, 'MRT', 1, 5),
+	(6, 'NAND', 1, 6),
+	(7, 'ACME', 2, 7),
+	(8, '2019', 2, 8),
+	(9, 'ACME', 3, 7),
+	(10, '2020', 3, 8),
+	(11, 'ACME', 4, 7),
+	(12, '2020', 4, 8);
 /*!40000 ALTER TABLE `article_feature` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `article_price`;
 CREATE TABLE IF NOT EXISTS `article_price` (
   `article_price_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -66,12 +79,17 @@ CREATE TABLE IF NOT EXISTS `article_price` (
   PRIMARY KEY (`article_price_id`),
   KEY `fk_article_price_article_id` (`article_id`),
   CONSTRAINT `fk_article_price_article_id` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40000 ALTER TABLE `article_price` DISABLE KEYS */;
+INSERT INTO `article_price` (`article_price_id`, `created_at`, `price`, `article_id`) VALUES
+	(1, '2021-05-17 15:33:23', 43.45, 1),
+	(2, '2021-05-17 15:36:11', 45.43, 1),
+	(3, '2021-05-17 17:04:19', 450.32, 2),
+	(4, '2021-05-17 17:31:31', 359.99, 3),
+	(5, '2021-05-17 17:32:57', 259.99, 4);
 /*!40000 ALTER TABLE `article_price` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `cart`;
 CREATE TABLE IF NOT EXISTS `cart` (
   `cart_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -84,7 +102,6 @@ CREATE TABLE IF NOT EXISTS `cart` (
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `cart_article`;
 CREATE TABLE IF NOT EXISTS `cart_article` (
   `cart_article_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `quantity` int(10) unsigned NOT NULL,
@@ -100,7 +117,6 @@ CREATE TABLE IF NOT EXISTS `cart_article` (
 /*!40000 ALTER TABLE `cart_article` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cart_article` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `category_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -126,7 +142,6 @@ INSERT INTO `category` (`category_id`, `name`, `image_path`, `parent__category_i
 	(10, 'Operativni sistemi', '/static/categories/os.png', 2);
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `feature`;
 CREATE TABLE IF NOT EXISTS `feature` (
   `feature_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -149,7 +164,6 @@ INSERT INTO `feature` (`feature_id`, `name`, `category_id`) VALUES
 	(3, 'Tip konektora', 4);
 /*!40000 ALTER TABLE `feature` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `order`;
 CREATE TABLE IF NOT EXISTS `order` (
   `order_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -163,7 +177,6 @@ CREATE TABLE IF NOT EXISTS `order` (
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `photo`;
 CREATE TABLE IF NOT EXISTS `photo` (
   `photo_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `image_path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -171,12 +184,17 @@ CREATE TABLE IF NOT EXISTS `photo` (
   PRIMARY KEY (`photo_id`),
   KEY `fk_photo_article_id` (`article_id`),
   CONSTRAINT `fk_photo_article_id` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40000 ALTER TABLE `photo` DISABLE KEYS */;
+INSERT INTO `photo` (`photo_id`, `image_path`, `article_id`) VALUES
+	(1, 'static/uploads/2021/05/1.jpg', 1),
+	(2, 'static/uploads/2021/05/1-all.jpg', 1),
+	(3, 'static/uploads/2021/50/679aa15e-db96-4044-b10d-4a259e2901e7-Node.png', 3),
+	(4, 'static/uploads/2021/50/af757dae-f24c-45cb-9207-f8a1580445fd-Node.png', 4),
+	(5, 'static/uploads/2021/50/571785b4-9ce9-48e5-ad97-d3f26cb50ed6-OOP.png', 4);
 /*!40000 ALTER TABLE `photo` ENABLE KEYS */;
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
