@@ -1,8 +1,6 @@
 import IModelAdapterOptionsInterface from '../../common/IModelAdapterOptions.interface';
-import BaseService from '../../services/BaseService';
+import BaseService from '../../common/BaseService';
 import FeatureModel from './model';
-import * as mysql2 from "mysql2/promise";
-import CategoryService from '../category/service';
 import CategoryModel from '../../../dist/components/category/model';
 import IErrorResponse from '../../../dist/common/IErrorResponse.interface';
 import { IAddFeature } from './dto/AddFeature';
@@ -13,13 +11,6 @@ class FeatureModelAdapterOptions implements IModelAdapterOptionsInterface {
 }
 
 class FeatureService extends BaseService<FeatureModel> {
-    private categoryService: CategoryService;
-
-    constructor(db: mysql2.Connection) {
-        super(db);
-        this.categoryService = new CategoryService(this.db);
-    }
-
     protected async adaptModel(
         data: any,
         options: Partial<FeatureModelAdapterOptions>
@@ -31,7 +22,7 @@ class FeatureService extends BaseService<FeatureModel> {
         item.categoryId = +(data?.category_id);
 
         if (options.loadCategory && item.categoryId) {
-            const result = await this.categoryService.getById(item.categoryId);
+            const result = await this.services.categoryService.getById(item.categoryId);
             item.category = result as CategoryModel;
         }
 
@@ -50,7 +41,7 @@ class FeatureService extends BaseService<FeatureModel> {
     ): Promise<FeatureModel[]> {
         const allFeatures: FeatureModel[] = [];
 
-        let currentParent: CategoryModel|null = await this.categoryService.getById(categoryId) as CategoryModel;
+        let currentParent: CategoryModel|null = await this.services.categoryService.getById(categoryId) as CategoryModel;
 
         while (currentParent !== null) {
             allFeatures.push(
@@ -61,7 +52,7 @@ class FeatureService extends BaseService<FeatureModel> {
                 ) as FeatureModel[]
             );
 
-            currentParent = await this.categoryService.getById(
+            currentParent = await this.services.categoryService.getById(
                 currentParent.parentCategoryId
             ) as CategoryModel | null;
         }

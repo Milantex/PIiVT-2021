@@ -1,16 +1,10 @@
-import FeatureService from './service';
 import { Request, Response, NextFunction } from 'express';
 import FeatureModel from './model';
 import { IAddFeature, IAddFeatureValidator } from './dto/AddFeature';
 import { IEditFeature, IEditFeatureValidator } from './dto/EditFeature';
+import BaseController from '../../common/BaseController';
 
-class FeatureController {
-    private featureService: FeatureService;
-
-    constructor(featureService: FeatureService) {
-        this.featureService = featureService;
-    }
-
+class FeatureController extends BaseController {
     public async getById(req: Request, res: Response, next: NextFunction) {
         const id: string = req.params.id;
 
@@ -21,7 +15,7 @@ class FeatureController {
             return;
         }
 
-        const result = await this.featureService.getById(featureId, {
+        const result = await this.services.featureService.getById(featureId, {
             loadCategory: true,
         });
 
@@ -40,7 +34,7 @@ class FeatureController {
 
     public async getAllInCategory(req: Request, res: Response, next: NextFunction) {
         const categoryId: number = +(req.params.cid);
-        res.send(await this.featureService.getAllByCategoryId(categoryId));
+        res.send(await this.services.featureService.getAllByCategoryId(categoryId));
     }
 
     public async add(req: Request, res: Response) {
@@ -49,7 +43,7 @@ class FeatureController {
             return;
         }
 
-        res.send(await this.featureService.add(req.body as IAddFeature));
+        res.send(await this.services.featureService.add(req.body as IAddFeature));
     }
 
     public async edit(req: Request, res: Response) {
@@ -65,7 +59,7 @@ class FeatureController {
             return;
         }
 
-        const result = await this.featureService.getById(featureId);
+        const result = await this.services.featureService.getById(featureId);
 
         if (result === null) {
             res.sendStatus(404);
@@ -77,7 +71,7 @@ class FeatureController {
             return;
         }
 
-        res.send(await this.featureService.edit(featureId, req.body as IEditFeature, {
+        res.send(await this.services.featureService.edit(featureId, req.body as IEditFeature, {
             loadCategory: true,
         }));
     }
