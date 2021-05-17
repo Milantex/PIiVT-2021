@@ -8,6 +8,8 @@ import Router from './router';
 import FeatureRouter from './components/feature/reouter';
 import CategoryService from './components/category/service';
 import FeatureService from './components/feature/service';
+import ArticleService from './components/article/service';
+import ArticleRouter from './components/article/router';
 
 async function main() {
     const application: express.Application = express();
@@ -33,6 +35,7 @@ async function main() {
     resources.services = {
         categoryService: new CategoryService(resources),
         featureService:  new FeatureService(resources),
+        articleService:  new ArticleService(resources),
     };
 
     application.use(
@@ -49,6 +52,7 @@ async function main() {
     Router.setupRoutes(application, resources, [
         new CategoryRouter(),
         new FeatureRouter(),
+        new ArticleRouter(),
         // ...
     ]);
 
