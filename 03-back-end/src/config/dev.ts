@@ -22,6 +22,13 @@ const Config: IConfig = {
         charset: "utf8",
         timezone: "+01:00",
     },
+    fileUpload: {
+        maxSize: 5 * 1024 * 1024,
+        maxFiles: 5,
+        timeout: 60000,
+        temporaryDirectory: '../temp/',
+        uploadDestinationDirectory: 'static/uploads/',
+    },
 };
 
 export default Config;

@@ -1,8 +1,9 @@
 import BaseService from '../../common/BaseService';
 import IModelAdapterOptionsInterface from '../../common/IModelAdapterOptions.interface';
 import ArticleModel, { ArticleFeatureValue, ArticlePhoto, ArticlePrice } from './model';
-import CategoryModel from '../../../dist/components/category/model';
-import IErrorResponse from '../../../dist/common/IErrorResponse.interface';
+import { IAddArticle, IUploadedPhoto } from './dto/IAddArticle';
+import CategoryModel from '../category/model';
+import IErrorResponse from '../../common/IErrorResponse.interface';
 
 class ArticleModelAdapterOptions implements IModelAdapterOptionsInterface {
     loadCategory: boolean = false;
@@ -157,6 +158,99 @@ class ArticleService extends BaseService<ArticleModel> {
             articleId,
             options,
         );
+    }
+
+    public async add(
+        data: IAddArticle,
+        uploadedPhotos: IUploadedPhoto[],
+    ): Promise<ArticleModel|IErrorResponse> {
+        return new Promise<ArticleModel|IErrorResponse>(resolve => {
+            this.db.beginTransaction()
+            .then(() => {
+                this.db.execute(
+                    `
+                    INSERT article
+                    SET
+                        title       = ?,
+                        excerpt     = ?,
+                        description = ?,
+                        is_active   = ?,
+                        is_promoted = ?,
+                        category_id = ?;
+                    `,
+                    [
+                        data.title,
+                        data.excerpt,
+                        data.description,
+                        data.isActive ? 1 : 0,
+                        data.isPromoted ? 1 : 0,
+                        data.categoryId,
+                    ]
+                )
+                .then(async (res: any) => {
+                    const newArticleId: number = +(res[0]?.insertId);
+
+                    const promises = [];
+
+                    promises.push(
+                        this.db.execute(
+                            `INSERT article_price SET price = ?, article_id = ?;`,
+                            [ data.price, newArticleId, ]
+                        ),
+                    );
+
+                    for (const featureValue of data.features) {
+                        promises.push(
+                            this.db.execute(
+                                `INSERT article_feature
+                                 SET article_id = ?, feature_id = ?, value = ?;`,
+                                [ newArticleId, featureValue.featureId, featureValue.value, ]
+                            ),
+                        );
+                    }
+
+                    for (const uploadedPhoto of uploadedPhotos) {
+                        promises.push(
+                            this.db.execute(
+                                `INSERT photo SET article_id = ?, image_path = ?;`,
+                                [ newArticleId, uploadedPhoto.imagePath, ]
+                            ),
+                        );
+                    }
+
+                    Promise.all(promises)
+                    .then(async () => {
+                        await this.db.commit();
+
+                        resolve(await this.services.articleService.getById(
+                            newArticleId,
+                            {
+                                loadCategory: true,
+                                loadFeatures: true,
+                                loadPhotos: true,
+                                // loadPrices: true,
+                            }
+                        ));
+                    })
+                    .catch(async error => {
+                        await this.db.rollback();
+    
+                        resolve({
+                            errorCode: error?.errno,
+                            errorMessage: error?.sqlMessage
+                        });
+                    });
+                })
+                .catch(async error => {
+                    await this.db.rollback();
+
+                    resolve({
+                        errorCode: error?.errno,
+                        errorMessage: error?.sqlMessage
+                    });
+                })
+            });
+        });
     }
 }
 

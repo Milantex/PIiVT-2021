@@ -1,6 +1,6 @@
 import { Application } from 'express';
-import IRouter from '../../../dist/common/IRouter.interface';
 import IApplicationResources from '../../common/IApplicationResources.interface';
+import IRouter from '../../common/IRouter.interface';
 import ArticleController from './controller';
 
 export default class ArticleRouter implements IRouter {
@@ -10,5 +10,6 @@ export default class ArticleRouter implements IRouter {
 
         // Routing:
         application.get('/article/:id', articleController.getById.bind(articleController));
+        application.post('/article',    articleController.add.bind(articleController));
     }
 }

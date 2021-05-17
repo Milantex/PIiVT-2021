@@ -20,4 +20,11 @@ export default interface IConfig {
         charset: string,
         timezone: string,
     },
+    fileUpload: {
+        maxSize: number;
+        maxFiles: number;
+        timeout: number;
+        temporaryDirectory: string;
+        uploadDestinationDirectory: string;
+    },
 };

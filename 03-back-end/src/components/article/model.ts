@@ -1,6 +1,5 @@
-import IModel from '../../../dist/common/IModel.interface';
-import CategoryModel from '../../../dist/components/category/model';
-import FeatureModel from '../../../dist/components/feature/model';
+import IModel from "../../common/IModel.interface";
+import CategoryModel from "../category/model";
 
 class Price implements IModel {
     priceId: number;
@@ -15,7 +14,7 @@ class Photo implements IModel {
 
 class FeatureValue implements IModel {
     featureId: number;
-    name: string;
+    name?: string;
     value: string;
 }
 

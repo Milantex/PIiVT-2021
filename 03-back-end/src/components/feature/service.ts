@@ -1,10 +1,10 @@
 import IModelAdapterOptionsInterface from '../../common/IModelAdapterOptions.interface';
 import BaseService from '../../common/BaseService';
 import FeatureModel from './model';
-import CategoryModel from '../../../dist/components/category/model';
-import IErrorResponse from '../../../dist/common/IErrorResponse.interface';
 import { IAddFeature } from './dto/AddFeature';
 import { IEditFeature } from './dto/EditFeature';
+import CategoryModel from '../category/model';
+import IErrorResponse from '../../common/IErrorResponse.interface';
 
 class FeatureModelAdapterOptions implements IModelAdapterOptionsInterface {
     loadCategory: boolean = false;

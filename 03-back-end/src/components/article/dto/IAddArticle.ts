@@ -12,6 +12,10 @@ interface IAddArticle {
     features: ArticleFeatureValue[];
 }
 
+interface IUploadedPhoto {
+    imagePath: string;
+}
+
 const ajv = new Ajv();
 
 const IAddArticleValidator = ajv.compile({
@@ -87,3 +91,4 @@ const IAddArticleValidator = ajv.compile({
 
 export { IAddArticle };
 export { IAddArticleValidator };
+export { IUploadedPhoto };
