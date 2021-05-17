@@ -1,19 +1,13 @@
-import CategoryService from './service';
 import {Request, Response, NextFunction} from "express";
 import CategoryModel from './model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IAddCategory, IAddCategoryValidator } from './dto/AddCategory';
 import { IEditCategory, IEditCategoryValidator } from './dto/EditCategory';
+import BaseController from '../../common/BaseController';
 
-class CategoryController {
-    private categoryService: CategoryService;
-
-    constructor(categoryService: CategoryService) {
-        this.categoryService = categoryService;
-    }
-
+class CategoryController extends BaseController {
     async getAll(req: Request, res: Response, next: NextFunction) {
-        const categories = await this.categoryService.getAll({
+        const categories = await this.services.categoryService.getAll({
             loadSubcategories: true,
         });
 
@@ -30,10 +24,11 @@ class CategoryController {
             return;
         }
 
-        const data: CategoryModel|null|IErrorResponse = await this.categoryService.getById(
+        const data: CategoryModel|null|IErrorResponse = await this.services.categoryService.getById(
             categoryId,
             {
                 loadSubcategories: true,
+                loadFeatures: true,
             }
         );
 
@@ -58,7 +53,7 @@ class CategoryController {
             return;
         }
 
-        const result = await this.categoryService.add(data as IAddCategory);
+        const result = await this.services.categoryService.add(data as IAddCategory);
 
         res.send(result);
     }
@@ -80,7 +75,7 @@ class CategoryController {
             return;
         }
 
-        const result = await this.categoryService.edit(
+        const result = await this.services.categoryService.edit(
             categoryId,
             data as IEditCategory,
             {
@@ -106,7 +101,7 @@ class CategoryController {
             return;
         }
 
-        res.send(await this.categoryService.delete(categoryId));
+        res.send(await this.services.categoryService.delete(categoryId));
     }
 }
 
