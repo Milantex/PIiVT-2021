@@ -218,6 +218,24 @@ class ArticleController extends BaseController {
 
         res.send(result);
     }
+
+    public async addArticlePhotos(req: Request, res: Response) {
+        const articleId: number = +(req.params?.id);
+
+        if (articleId <= 0) return res.sendStatus(400);
+
+        const item = await this.services.articleService.getById(articleId);
+
+        if (item === null) return res.sendStatus(404);
+
+        const uploadedPhotos = await this.uploadFiles(req, res);
+
+        if (uploadedPhotos.length === 0) {
+            return;
+        }
+
+        res.send(await this.services.articleService.addArticlePhotos(articleId, uploadedPhotos));
+    }
 }
 
 export default ArticleController;

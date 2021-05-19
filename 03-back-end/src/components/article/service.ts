@@ -592,6 +592,63 @@ class ArticleService extends BaseService<ArticleModel> {
             }))
         });
     }
+
+    public async addArticlePhotos(articleId: number, uploadedPhotos: IUploadedPhoto[]): Promise<ArticleModel|IErrorResponse|null> {
+        return new Promise<ArticleModel|IErrorResponse|null>(async resolve => {
+            const article = await this.getById(articleId, {
+                loadPhotos: true,
+            });
+
+            if (article === null) {
+                return resolve(null);
+            }
+
+            this.db.beginTransaction()
+                .then(() => {
+                    const promises = [];
+
+                    for (const uploadedPhoto of uploadedPhotos) {
+                        promises.push(
+                            this.db.execute(
+                                `INSERT photo SET article_id = ?, image_path = ?;`,
+                                [ articleId, uploadedPhoto.imagePath, ]
+                            ),
+                        );
+                    }
+
+                    Promise.all(promises)
+                        .then(async () => {
+                            await this.db.commit();
+
+                            resolve(await this.services.articleService.getById(
+                                articleId,
+                                {
+                                    loadCategory: true,
+                                    loadFeatures: true,
+                                    loadPhotos: true,
+                                    // loadPrices: true,
+                                }
+                            ));
+                        })
+                        .catch(async error => {
+                            await this.db.rollback();
+
+                            resolve({
+                                errorCode: error?.errno,
+                                errorMessage: error?.sqlMessage
+                            });
+                        });
+                })
+                .catch(async error => {
+                    await this.db.rollback();
+
+                    resolve({
+                        errorCode: error?.errno,
+                        errorMessage: error?.sqlMessage
+                    });
+                })
+        })
+    }
 }
 
 export default ArticleService;
