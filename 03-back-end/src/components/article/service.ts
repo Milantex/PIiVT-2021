@@ -5,6 +5,9 @@ import { IAddArticle, IUploadedPhoto } from './dto/IAddArticle';
 import CategoryModel from '../category/model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IEditArticle } from './dto/IEditArticle';
+import * as fs from "fs";
+import Config from '../../config/dev';
+import * as path from 'path';
 
 class ArticleModelAdapterOptions implements IModelAdapterOptionsInterface {
     loadCategory: boolean = false;
@@ -403,6 +406,152 @@ class ArticleService extends BaseService<ArticleModel> {
                     });
                 });
         });
+    }
+
+    public async delete(articleId: number): Promise<IErrorResponse|null> {
+        return new Promise<IErrorResponse>(async resolve => {
+            const currentArticle = await this.getById(articleId, {
+                loadFeatures: true,
+                loadPhotos: true,
+                loadPrices: true,
+            });
+
+            if (currentArticle === null) {
+                return resolve(null);
+            }
+
+            this.db.beginTransaction()
+                .then(async () => {
+                    if (await this.deleteArticlePrices(articleId)) return;
+                    throw { errno: -1002, sqlMessage: "Could not delete article prices.", };
+                })
+                .then(async () => {
+                    if (await this.deleteArticleFeatureValues(articleId)) return;
+                    throw { errno: -1003, sqlMessage: "Could not delete article feature values.", };
+                })
+                .then(async () => {
+                    if (await this.deleteArticleCartRecord(articleId)) return;
+                    throw { errno: -1004, sqlMessage: "Could not delete article cart records.", };
+                })
+                .then(async () => {
+                    const filesToDelete = await this.deleteArticlePhotoRecords(articleId);
+                    if (filesToDelete.length !== 0) return filesToDelete;
+                    throw { errno: -1005, sqlMessage: "Could not delete article photo records.", };
+                })
+                .then(async (filesToDelete) => {
+                    if (await this.deleteArticleRecord(articleId)) return filesToDelete;
+                    throw { errno: -1006, sqlMessage: "Could not delete the article records.", };
+                })
+                .then(async (filesToDelete) => {
+                    await this.db.commit();
+                    return filesToDelete;
+                })
+                .then((filesToDelete) => {
+                    this.deleteArticlePhotosAndResizedVersion(filesToDelete);
+                })
+                .then(() => {
+                    resolve({
+                        errorCode: 0,
+                        errorMessage: "Article deleted!",
+                    });
+                })
+                .catch(async error => {
+                    await this.db.rollback();
+                    resolve({
+                        errorCode: error?.errno,
+                        errorMessage: error?.sqlMessage
+                    });
+                });
+        });
+    }
+
+    private async deleteArticlePrices(articleId: number): Promise<boolean> {
+        return new Promise<boolean>(async resolve => {
+            this.db.execute(
+                `DELETE FROM article_price WHERE article_id = ?;`,
+                [ articleId ]
+            )
+            .then(() => resolve(true))
+            .catch(() => resolve(false));
+        });
+    }
+
+    private async deleteArticleFeatureValues(articleId: number): Promise<boolean> {
+        return new Promise<boolean>(async resolve => {
+            this.db.execute(
+                `DELETE FROM article_feature WHERE article_id = ?;`,
+                [ articleId ]
+            )
+            .then(() => resolve(true))
+            .catch(() => resolve(false));
+        });
+    }
+
+    private async deleteArticleCartRecord(articleId: number): Promise<boolean> {
+        return new Promise<boolean>(async resolve => {
+            this.db.execute(
+                `DELETE FROM cart_article WHERE article_id = ?;`,
+                [ articleId ]
+            )
+            .then(() => resolve(true))
+            .catch(() => resolve(false));
+        });
+    }
+
+    private async deleteArticlePhotoRecords(articleId: number): Promise<string[]> {
+        return new Promise<string[]>(async resolve => {
+            const [ rows ] = await this.db.execute(
+                `SELECT image_path FROM photo WHERE article_id = ?;`,
+                [ articleId ]
+            );
+
+            if (!Array.isArray(rows) || rows.length === 0) return resolve([]);
+
+            const filesToDelete = rows.map(row => row?.image_path);
+
+            this.db.execute(
+                `DELETE FROM photo WHERE article_id = ?;`,
+                [ articleId ]
+            )
+            .then(() => resolve(filesToDelete))
+            .catch(() => resolve([]))
+
+            resolve(filesToDelete);
+        });
+    }
+
+    private async deleteArticleRecord(articleId: number): Promise<boolean> {
+        return new Promise<boolean>(async resolve => {
+            this.db.execute(
+                `DELETE FROM article WHERE article_id = ?;`,
+                [ articleId ]
+            )
+            .then(() => resolve(true))
+            .catch(() => resolve(false));
+        });
+    }
+
+    private deleteArticlePhotosAndResizedVersion(filesToDelete: string[]) {
+        try {
+            for (const fileToDelete of filesToDelete) {
+                fs.unlinkSync(fileToDelete);
+
+                const pathParts = path.parse(fileToDelete);
+
+                const directory = pathParts.dir;
+                const filename  = pathParts.name;
+                const extension = pathParts.ext;
+
+                for (const resizeSpecification of Config.fileUpload.photos.resizes) {
+                    const resizedImagePath = directory + "/" +
+                                             filename +
+                                             resizeSpecification.sufix +
+                                             extension;
+
+                    fs.unlinkSync(resizedImagePath);
+                }
+            }
+        } catch (e) { }
     }
 }
 
