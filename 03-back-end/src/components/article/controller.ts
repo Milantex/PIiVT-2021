@@ -125,16 +125,20 @@ class ArticleController extends BaseController {
             return;
         }
 
-        const data = JSON.parse(req.body?.data);
+        try {
+            const data = JSON.parse(req.body?.data);
 
-        if (!IAddArticleValidator(data)) {
-            res.status(400).send(IAddArticleValidator.errors);
-            return;
+            if (!IAddArticleValidator(data)) {
+                res.status(400).send(IAddArticleValidator.errors);
+                return;
+            }
+
+            const result = await this.services.articleService.add(data as IAddArticle, uploadedPhotos);
+
+            res.send(result);
+        } catch (e) {
+            res.status(400).send(e?.message);
         }
-
-        const result = await this.services.articleService.add(data as IAddArticle, uploadedPhotos);
-
-        res.send(result);
     }
 }
 
