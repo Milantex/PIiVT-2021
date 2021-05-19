@@ -1363,13 +1363,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{API_URL}}/article/1",
+							"raw": "{{API_URL}}/article/13",
 							"host": [
 								"{{API_URL}}"
 							],
 							"path": [
 								"article",
-								"1"
+								"13"
 							]
 						}
 					},
@@ -1498,20 +1498,25 @@
 							"formdata": [
 								{
 									"key": "data",
-									"value": "{\n    \"title\": \"Softver za video produkciju 2\",\n    \"excerpt\": \"Ovo je kratak opis 2...\",\n    \"description\": \"Ovo je detaljan opis 2...\",\n    \"isActive\": true,\n    \"isPromoted\": true,\n    \"price\": 359.99,\n    \"categoryId\": 2,\n    \"features\": [\n\t\t{\n\t\t\t\"featureId\": 7,\n\t\t\t\"value\": \"ACME\"\n\t\t},\n\t\t{\n\t\t\t\"featureId\": 8,\n\t\t\t\"value\": \"2020\"\n\t\t}\n\t]\n}",
+									"value": "{\n\t\"title\": \"MB 111\",\n\t\"excerpt\": \"Ovo je kratak opis mp...\",\n\t\"description\": \"Ovo je detaljan opis mp...   \",\n\t\"isActive\": true,\n\t\"isPromoted\": true,\n\t\"price\": 39.90,\n\t\"categoryId\": 3,\n\t\"features\": [{\n\t\t\t\"featureId\": 4,\n\t\t\t\"value\": \"SAGA\"\n\t\t},\n\t\t{\n\t\t\t\"featureId\": 5,\n\t\t\t\"value\": \"MB44\"\n\t\t}\n\t]\n}",
 									"type": "text"
 								},
 								{
 									"key": "photo1",
 									"type": "file",
-									"src": "/C:/Users/mtair/Desktop/PIiVT/Node.png"
+									"src": "/C:/Users/mtair/Desktop/Photos/mb/alexandre-debieve-FO7JIlwjOtU-unsplash.jpg"
+								},
+								{
+									"key": "slika-dva",
+									"type": "file",
+									"src": "/C:/Users/mtair/Desktop/Photos/mb/cooler-933691_1280.jpg"
+								},
+								{
+									"key": "jos_jedna",
+									"type": "file",
+									"src": "/C:/Users/mtair/Desktop/Photos/mb/cyber-2377718_1280.jpg"
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							]
 						},
 						"url": {
 							"raw": "{{API_URL}}/article",
@@ -1598,6 +1603,555 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"prices\": [],\n    \"photos\": [\n        {\n            \"photoId\": 3,\n            \"imagePath\": \"static/uploads/2021/50/679aa15e-db96-4044-b10d-4a259e2901e7-Node.png\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 7,\n            \"name\": \"Produkciona kuća\",\n            \"value\": \"ACME\"\n        },\n        {\n            \"featureId\": 8,\n            \"name\": \"Godina izdanja\",\n            \"value\": \"2020\"\n        }\n    ],\n    \"articleId\": 3,\n    \"title\": \"Softver za video produkciju 2\",\n    \"excerpt\": \"Ovo je kratak opis 2...\",\n    \"description\": \"Ovo je detaljan opis 2...\",\n    \"isActive\": true,\n    \"isPromoted\": true,\n    \"createdAt\": \"2021-05-17T16:31:31.000Z\",\n    \"categoryId\": 2,\n    \"currentPrice\": 359.99,\n    \"category\": {\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subcategories\": [],\n        \"features\": [],\n        \"categoryId\": 2,\n        \"name\": \"Računarski softver\",\n        \"imagePath\": \"/static/categories/cd.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT to edit an existing article",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"title\": \"HDD x100\",\r\n\t\"excerpt\": \"Ovo je kratak opis hard diska...\",\r\n\t\"description\": \"Ovo je detaljan opis hard diska...   \",\r\n\t\"isActive\": true,\r\n\t\"isPromoted\": false,\r\n\t\"price\": 19.45,\r\n\t\"features\": [\r\n\t\t{\r\n\t\t\t\"featureId\": 1,\r\n\t\t\t\"value\": \"2TB\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"featureId\": 2,\r\n\t\t\t\"value\": \"2.5\\\"\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"featureId\": 7,\r\n\t\t\t\"value\": \"ACME\"\r\n\t\t}\r\n\t]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/article/11",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"article",
+								"11"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT to edit an existing article",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"title\": \"HDD x100\",\r\n\t\"excerpt\": \"Ovo je kratak opis hard diska...\",\r\n\t\"description\": \"Ovo je detaljan opis hard diska...   \",\r\n\t\"isActive\": true,\r\n\t\"isPromoted\": false,\r\n\t\"price\": 19.45,\r\n\t\"features\": [\r\n\t\t{\r\n\t\t\t\"featureId\": 1,\r\n\t\t\t\"value\": \"2TB\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"featureId\": 2,\r\n\t\t\t\"value\": \"2.5\\\"\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"featureId\": 7,\r\n\t\t\t\"value\": \"ACME\"\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/article/11",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"11"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1130"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"46a-w8zseyWIK99ne2raBu8mpiJCVLY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 19 May 2021 13:37:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"prices\": [\n        {\n            \"priceId\": 9,\n            \"createdAt\": \"2021-05-19T13:25:40.000Z\",\n            \"price\": 59.9\n        },\n        {\n            \"priceId\": 10,\n            \"createdAt\": \"2021-05-19T14:37:36.000Z\",\n            \"price\": 19.45\n        }\n    ],\n    \"photos\": [\n        {\n            \"photoId\": 9,\n            \"imagePath\": \"static/uploads/2021/05/8fc2f2b2-abcd-4aba-96be-b605ef97c47e-denny-muller-1qL31aacAPA-unsplash.jpg\"\n        },\n        {\n            \"photoId\": 10,\n            \"imagePath\": \"static/uploads/2021/05/1313052e-df8a-4f02-894a-eed1c98fecd0-frank-r-ShHkXuZdpTw-unsplash.jpg\"\n        },\n        {\n            \"photoId\": 11,\n            \"imagePath\": \"static/uploads/2021/05/4fca5109-255b-4f15-bc3c-fdc9166970e4-denny-muller-4u6TUbreFc0-unsplash.jpg\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 1,\n            \"name\": \"Kapacitet (GB)\",\n            \"value\": \"2TB\"\n        },\n        {\n            \"featureId\": 2,\n            \"name\": \"Dimenzije\",\n            \"value\": \"2.5\\\"\"\n        },\n        {\n            \"featureId\": 7,\n            \"name\": \"Produkciona kuća\",\n            \"value\": \"ACME\"\n        }\n    ],\n    \"articleId\": 11,\n    \"title\": \"HDD x100\",\n    \"excerpt\": \"Ovo je kratak opis hard diska...\",\n    \"description\": \"Ovo je detaljan opis hard diska...   \",\n    \"isActive\": true,\n    \"isPromoted\": false,\n    \"createdAt\": \"2021-05-19T13:25:40.000Z\",\n    \"categoryId\": 5,\n    \"currentPrice\": 19.45,\n    \"category\": {\n        \"parentCategoryId\": 4,\n        \"parentCategory\": null,\n        \"subcategories\": [],\n        \"features\": [],\n        \"categoryId\": 5,\n        \"name\": \"Magnetni diskovi\",\n        \"imagePath\": \"/static/categories/hdd-classic.png\"\n    }\n}"
+						},
+						{
+							"name": "PUT to edit an existing article - with a non-existing article ID",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"title\": \"HDD x100\",\r\n\t\"excerpt\": \"Ovo je kratak opis hard diska...\",\r\n\t\"description\": \"Ovo je detaljan opis hard diska...   \",\r\n\t\"isActive\": true,\r\n\t\"isPromoted\": false,\r\n\t\"price\": 19.45,\r\n\t\"features\": [\r\n\t\t{\r\n\t\t\t\"featureId\": 1,\r\n\t\t\t\"value\": \"2TB\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"featureId\": 2,\r\n\t\t\t\"value\": \"2.5\\\"\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"featureId\": 7,\r\n\t\t\t\"value\": \"ACME\"\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/article/110",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"110"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 19 May 2021 13:38:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "DELETE an existing article",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/article/15",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"article",
+								"15"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE an existing article",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/article/15",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"15"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-fnkOTMUmW5tcrtI5d26s3ATy4O8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 19 May 2021 15:08:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Article deleted!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE a single photo of an article",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/article/16/photo/24",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"article",
+								"16",
+								"photo",
+								"24"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE a single photo of an article",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/article/16/photo/24",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"16",
+										"photo",
+										"24"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f-+DFY8+0YM+KyTge7bv5hfEa9mXg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 19 May 2021 15:25:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Photo deleted.\"\n}"
+						},
+						{
+							"name": "DELETE a single photo of an article - record not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/article/16/photo/24",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"16",
+										"photo",
+										"24"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 19 May 2021 15:26:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "POST new photos to an article",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "slika_a",
+									"type": "file",
+									"src": "/C:/Users/mtair/Desktop/Photos/hdd/denny-muller-4u6TUbreFc0-unsplash.jpg"
+								},
+								{
+									"key": "photo22",
+									"type": "file",
+									"src": "/C:/Users/mtair/Desktop/Photos/hdd/denny-muller-1qL31aacAPA-unsplash.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_URL}}/article/199/photo",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"article",
+								"199",
+								"photo"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST new photos to an article",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "slika_a",
+											"type": "file",
+											"src": "/C:/Users/mtair/Desktop/Photos/hdd/denny-muller-4u6TUbreFc0-unsplash.jpg"
+										},
+										{
+											"key": "photo22",
+											"type": "file",
+											"src": "/C:/Users/mtair/Desktop/Photos/hdd/denny-muller-1qL31aacAPA-unsplash.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{API_URL}}/article/16/photo",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"16",
+										"photo"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1368"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"558-i+ps7GyG/E1wpPI2UyaA4V3Embs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 19 May 2021 15:38:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"prices\": [],\n    \"photos\": [\n        {\n            \"photoId\": 22,\n            \"imagePath\": \"static/uploads/2021/05/4a287f88-7e5e-424e-b2e6-e7e1fd42b3da-denny-muller-1qL31aacAPA-unsplash.jpg\"\n        },\n        {\n            \"photoId\": 23,\n            \"imagePath\": \"static/uploads/2021/05/96c789c0-f661-424d-8374-f3a847543459-frank-r-ShHkXuZdpTw-unsplash.jpg\"\n        },\n        {\n            \"photoId\": 28,\n            \"imagePath\": \"static/uploads/2021/05/bb267a51-8221-454f-83c3-8f5389c43a96-anas-alshanti-feXpdV001o4-unsplash.jpg\"\n        },\n        {\n            \"photoId\": 29,\n            \"imagePath\": \"static/uploads/2021/05/7565e626-3a41-4caa-a065-17c6920b7aba-dries-augustyns-yiCOCqZ-ig4-unsplash.jpg\"\n        },\n        {\n            \"photoId\": 30,\n            \"imagePath\": \"static/uploads/2021/05/aff9bee8-8ff7-4c56-9c72-888477eb8b5f-denny-muller-4u6TUbreFc0-unsplash.jpg\"\n        },\n        {\n            \"photoId\": 31,\n            \"imagePath\": \"static/uploads/2021/05/a3549188-687d-4256-9659-171852b2d184-denny-muller-1qL31aacAPA-unsplash.jpg\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 1,\n            \"name\": \"Kapacitet (GB)\",\n            \"value\": \"1TB\"\n        },\n        {\n            \"featureId\": 2,\n            \"name\": \"Dimenzije\",\n            \"value\": \"3.5\\\"\"\n        },\n        {\n            \"featureId\": 3,\n            \"name\": \"Tip konektora\",\n            \"value\": \"SATA 3.0\"\n        }\n    ],\n    \"articleId\": 16,\n    \"title\": \"HDD 1\",\n    \"excerpt\": \"Ovo je kratak opis diska...\",\n    \"description\": \"Ovo je detaljan opis diska...   \",\n    \"isActive\": true,\n    \"isPromoted\": true,\n    \"createdAt\": \"2021-05-19T16:10:35.000Z\",\n    \"categoryId\": 5,\n    \"currentPrice\": 59.9,\n    \"category\": {\n        \"parentCategoryId\": 4,\n        \"parentCategory\": null,\n        \"subcategories\": [],\n        \"features\": [],\n        \"categoryId\": 5,\n        \"name\": \"Magnetni diskovi\",\n        \"imagePath\": \"/static/categories/hdd-classic.png\"\n    }\n}"
+						},
+						{
+							"name": "POST new photos to an article - for a non-existing article ID",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "slika_a",
+											"type": "file",
+											"src": "/C:/Users/mtair/Desktop/Photos/hdd/denny-muller-4u6TUbreFc0-unsplash.jpg"
+										},
+										{
+											"key": "photo22",
+											"type": "file",
+											"src": "/C:/Users/mtair/Desktop/Photos/hdd/denny-muller-1qL31aacAPA-unsplash.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{API_URL}}/article/199/photo",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"199",
+										"photo"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 19 May 2021 15:38:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
 						}
 					]
 				}

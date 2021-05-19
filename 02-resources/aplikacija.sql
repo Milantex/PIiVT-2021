@@ -33,14 +33,12 @@ CREATE TABLE IF NOT EXISTS `article` (
   UNIQUE KEY `uq_article_title` (`title`),
   KEY `fk_article_category_id` (`category_id`),
   CONSTRAINT `fk_article_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
 INSERT INTO `article` (`article_id`, `created_at`, `title`, `excerpt`, `description`, `is_active`, `is_promoted`, `category_id`) VALUES
-	(1, '2021-05-17 15:33:10', 'ACME disk 500 MRT', 'kratak opis diska.', 'Detaljan opis karakteristika.', 1, 1, 6),
-	(2, '2021-05-17 17:04:19', 'Softver za video produkciju', 'Ovo je kratak opis...', 'Ovo je detaljan opis...', 1, 0, 2),
-	(3, '2021-05-17 17:31:31', 'Softver za video produkciju 2', 'Ovo je kratak opis 2...', 'Ovo je detaljan opis 2...', 1, 1, 2),
-	(4, '2021-05-17 17:32:57', 'Softver za video produkciju 3', 'Ovo je kratak opis 3...', 'Ovo je detaljan opis 3...', 1, 1, 2);
+	(16, '2021-05-19 17:10:35', 'HDD 1', 'Ovo je kratak opis diska...', 'Ovo je detaljan opis diska...   ', 1, 1, 5),
+	(17, '2021-05-19 17:11:36', 'MB 111', 'Ovo je kratak opis mp...', 'Ovo je detaljan opis mp...   ', 1, 1, 3);
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 
 CREATE TABLE IF NOT EXISTS `article_feature` (
@@ -53,22 +51,15 @@ CREATE TABLE IF NOT EXISTS `article_feature` (
   KEY `fk_article_feature_feature_id` (`feature_id`),
   CONSTRAINT `fk_article_feature_article_id` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_article_feature_feature_id` FOREIGN KEY (`feature_id`) REFERENCES `feature` (`feature_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40000 ALTER TABLE `article_feature` DISABLE KEYS */;
 INSERT INTO `article_feature` (`article_feature_id`, `value`, `article_id`, `feature_id`) VALUES
-	(1, '500', 1, 1),
-	(2, '2,5"', 1, 2),
-	(3, 'SATA3', 1, 3),
-	(4, 'ACME', 1, 4),
-	(5, 'MRT', 1, 5),
-	(6, 'NAND', 1, 6),
-	(7, 'ACME', 2, 7),
-	(8, '2019', 2, 8),
-	(9, 'ACME', 3, 7),
-	(10, '2020', 3, 8),
-	(11, 'ACME', 4, 7),
-	(12, '2020', 4, 8);
+	(48, '1TB', 16, 1),
+	(49, '3.5"', 16, 2),
+	(50, 'SATA 3.0', 16, 3),
+	(51, 'SAGA', 17, 4),
+	(52, 'MB44', 17, 5);
 /*!40000 ALTER TABLE `article_feature` ENABLE KEYS */;
 
 CREATE TABLE IF NOT EXISTS `article_price` (
@@ -79,15 +70,12 @@ CREATE TABLE IF NOT EXISTS `article_price` (
   PRIMARY KEY (`article_price_id`),
   KEY `fk_article_price_article_id` (`article_id`),
   CONSTRAINT `fk_article_price_article_id` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40000 ALTER TABLE `article_price` DISABLE KEYS */;
 INSERT INTO `article_price` (`article_price_id`, `created_at`, `price`, `article_id`) VALUES
-	(1, '2021-05-17 15:33:23', 43.45, 1),
-	(2, '2021-05-17 15:36:11', 45.43, 1),
-	(3, '2021-05-17 17:04:19', 450.32, 2),
-	(4, '2021-05-17 17:31:31', 359.99, 3),
-	(5, '2021-05-17 17:32:57', 259.99, 4);
+	(14, '2021-05-19 17:10:35', 59.90, 16),
+	(15, '2021-05-19 17:11:36', 39.90, 17);
 /*!40000 ALTER TABLE `article_price` ENABLE KEYS */;
 
 CREATE TABLE IF NOT EXISTS `cart` (
@@ -184,15 +172,19 @@ CREATE TABLE IF NOT EXISTS `photo` (
   PRIMARY KEY (`photo_id`),
   KEY `fk_photo_article_id` (`article_id`),
   CONSTRAINT `fk_photo_article_id` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40000 ALTER TABLE `photo` DISABLE KEYS */;
 INSERT INTO `photo` (`photo_id`, `image_path`, `article_id`) VALUES
-	(1, 'static/uploads/2021/05/1.jpg', 1),
-	(2, 'static/uploads/2021/05/1-all.jpg', 1),
-	(3, 'static/uploads/2021/50/679aa15e-db96-4044-b10d-4a259e2901e7-Node.png', 3),
-	(4, 'static/uploads/2021/50/af757dae-f24c-45cb-9207-f8a1580445fd-Node.png', 4),
-	(5, 'static/uploads/2021/50/571785b4-9ce9-48e5-ad97-d3f26cb50ed6-OOP.png', 4);
+	(22, 'static/uploads/2021/05/4a287f88-7e5e-424e-b2e6-e7e1fd42b3da-denny-muller-1qL31aacAPA-unsplash.jpg', 16),
+	(23, 'static/uploads/2021/05/96c789c0-f661-424d-8374-f3a847543459-frank-r-ShHkXuZdpTw-unsplash.jpg', 16),
+	(25, 'static/uploads/2021/05/b1de3f1f-b70f-46cc-a566-023fa7dc3d56-alexandre-debieve-FO7JIlwjOtU-unsplash.jpg', 17),
+	(26, 'static/uploads/2021/05/cb1727af-365f-4b33-b81a-ef03cfe57cc4-cooler-933691_1280.jpg', 17),
+	(27, 'static/uploads/2021/05/16e50e93-9e11-4c55-b196-d3a08de20bc4-cyber-2377718_1280.jpg', 17),
+	(28, 'static/uploads/2021/05/bb267a51-8221-454f-83c3-8f5389c43a96-anas-alshanti-feXpdV001o4-unsplash.jpg', 16),
+	(29, 'static/uploads/2021/05/7565e626-3a41-4caa-a065-17c6920b7aba-dries-augustyns-yiCOCqZ-ig4-unsplash.jpg', 16),
+	(30, 'static/uploads/2021/05/aff9bee8-8ff7-4c56-9c72-888477eb8b5f-denny-muller-4u6TUbreFc0-unsplash.jpg', 16),
+	(31, 'static/uploads/2021/05/a3549188-687d-4256-9659-171852b2d184-denny-muller-1qL31aacAPA-unsplash.jpg', 16);
 /*!40000 ALTER TABLE `photo` ENABLE KEYS */;
 
 CREATE TABLE IF NOT EXISTS `user` (
