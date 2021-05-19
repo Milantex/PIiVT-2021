@@ -553,6 +553,45 @@ class ArticleService extends BaseService<ArticleModel> {
             }
         } catch (e) { }
     }
+
+    public async deleteArticlePhoto(articleId: number, photoId: number): Promise<IErrorResponse|null> {
+        return new Promise<IErrorResponse|null>(async resolve => {
+            const article = await this.getById(articleId, {
+                loadPhotos: true,
+            });
+
+            if (article === null) {
+                return resolve(null);
+            }
+
+            const filteredPhotos = (article as ArticleModel).photos.filter(p => p.photoId === photoId);
+
+            if (filteredPhotos.length === 0) {
+                return resolve(null);
+            }
+
+            const photo = filteredPhotos[0];
+
+            this.db.execute(
+                `DELETE FROM photo WHERE photo_id = ?;`,
+                [ photo.photoId ]
+            )
+            .then(() => {
+                this.deleteArticlePhotosAndResizedVersion([
+                    photo.imagePath
+                ]);
+
+                resolve({
+                    errorCode: 0,
+                    errorMessage: "Photo deleted.",
+                });
+            })
+            .catch(error => resolve({
+                errorCode: error?.errno,
+                errorMessage: error?.sqlMessage
+            }))
+        });
+    }
 }
 
 export default ArticleService;
