@@ -5,9 +5,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+DROP DATABASE IF EXISTS `aplikacija`;
 CREATE DATABASE IF NOT EXISTS `aplikacija` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 USE `aplikacija`;
 
+DROP TABLE IF EXISTS `administrator`;
 CREATE TABLE IF NOT EXISTS `administrator` (
   `administrator_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -15,11 +17,14 @@ CREATE TABLE IF NOT EXISTS `administrator` (
   `is_active` tinyint(1) unsigned NOT NULL DEFAULT 1,
   PRIMARY KEY (`administrator_id`),
   UNIQUE KEY `uq_administrator_username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40000 ALTER TABLE `administrator` DISABLE KEYS */;
+INSERT INTO `administrator` (`administrator_id`, `username`, `password_hash`, `is_active`) VALUES
+	(1, 'mtair', '$2b$11$EQh6tfARj4FcIjIJtHyJ6.M3QgwQGzMaAAMuIDEXb8d9KYrtyP8PC', 1);
 /*!40000 ALTER TABLE `administrator` ENABLE KEYS */;
 
+DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (
   `article_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -41,6 +46,7 @@ INSERT INTO `article` (`article_id`, `created_at`, `title`, `excerpt`, `descript
 	(17, '2021-05-19 17:11:36', 'MB 111', 'Ovo je kratak opis mp...', 'Ovo je detaljan opis mp...   ', 1, 1, 3);
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 
+DROP TABLE IF EXISTS `article_feature`;
 CREATE TABLE IF NOT EXISTS `article_feature` (
   `article_feature_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `value` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -62,6 +68,7 @@ INSERT INTO `article_feature` (`article_feature_id`, `value`, `article_id`, `fea
 	(52, 'MB44', 17, 5);
 /*!40000 ALTER TABLE `article_feature` ENABLE KEYS */;
 
+DROP TABLE IF EXISTS `article_price`;
 CREATE TABLE IF NOT EXISTS `article_price` (
   `article_price_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -78,6 +85,7 @@ INSERT INTO `article_price` (`article_price_id`, `created_at`, `price`, `article
 	(15, '2021-05-19 17:11:36', 39.90, 17);
 /*!40000 ALTER TABLE `article_price` ENABLE KEYS */;
 
+DROP TABLE IF EXISTS `cart`;
 CREATE TABLE IF NOT EXISTS `cart` (
   `cart_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -90,6 +98,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 
+DROP TABLE IF EXISTS `cart_article`;
 CREATE TABLE IF NOT EXISTS `cart_article` (
   `cart_article_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `quantity` int(10) unsigned NOT NULL,
@@ -105,6 +114,7 @@ CREATE TABLE IF NOT EXISTS `cart_article` (
 /*!40000 ALTER TABLE `cart_article` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cart_article` ENABLE KEYS */;
 
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `category_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -130,6 +140,7 @@ INSERT INTO `category` (`category_id`, `name`, `image_path`, `parent__category_i
 	(10, 'Operativni sistemi', '/static/categories/os.png', 2);
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 
+DROP TABLE IF EXISTS `feature`;
 CREATE TABLE IF NOT EXISTS `feature` (
   `feature_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -152,6 +163,7 @@ INSERT INTO `feature` (`feature_id`, `name`, `category_id`) VALUES
 	(3, 'Tip konektora', 4);
 /*!40000 ALTER TABLE `feature` ENABLE KEYS */;
 
+DROP TABLE IF EXISTS `order`;
 CREATE TABLE IF NOT EXISTS `order` (
   `order_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -165,6 +177,7 @@ CREATE TABLE IF NOT EXISTS `order` (
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 
+DROP TABLE IF EXISTS `photo`;
 CREATE TABLE IF NOT EXISTS `photo` (
   `photo_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `image_path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -187,6 +200,7 @@ INSERT INTO `photo` (`photo_id`, `image_path`, `article_id`) VALUES
 	(31, 'static/uploads/2021/05/a3549188-687d-4256-9659-171852b2d184-denny-muller-1qL31aacAPA-unsplash.jpg', 16);
 /*!40000 ALTER TABLE `photo` ENABLE KEYS */;
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -200,9 +214,11 @@ CREATE TABLE IF NOT EXISTS `user` (
   `is_active` tinyint(1) unsigned NOT NULL DEFAULT 1,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `uq_user_email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` (`user_id`, `created_at`, `email`, `password_hash`, `password_reset_code`, `forename`, `surname`, `phone_number`, `postal_address`, `is_active`) VALUES
+	(6, '2021-05-21 15:47:55', 'mtair@singidunum.ac.rs', '$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O', NULL, 'Milan', 'Tair', '+381113093267', 'Danijelova 32, 11010 beograd, R. Srbija', 1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
