@@ -41,4 +41,13 @@ export default interface IConfig {
             }[],
         },
     },
+    mail: {
+        hostname: string;
+        port: number;
+        secure: boolean;
+        username: string;
+        password: string;
+        fromEmail: string;
+        debug: boolean;
+    },
 };
