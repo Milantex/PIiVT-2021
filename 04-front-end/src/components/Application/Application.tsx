@@ -3,7 +3,7 @@ import './Application.css';
 
 export default function Application() {
   return (
-    <div className="Application">
+    <div className="Application container">
       ...
     </div>
   );
