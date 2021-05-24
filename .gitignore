@@ -4,3 +4,17 @@ temp/
 03-back-end/dist/
 03-back-end/static/uploads/
 03-back-end/.env
+
+04-front-end/node_modules/
+04-front-end/.pnp
+04-front-end/.pnp.js
+04-front-end/coverage/
+04-front-end/build/
+04-front-end/.DS_Store
+04-front-end/.env.local
+04-front-end/.env.development.local
+04-front-end/.env.test.local
+04-front-end/.env.production.local
+04-front-end/npm-debug.log*
+04-front-end/yarn-debug.log*
+04-front-end/yarn-error.log*
