@@ -93,9 +93,12 @@ CREATE TABLE IF NOT EXISTS `cart` (
   PRIMARY KEY (`cart_id`),
   KEY `fk_cart_user_id` (`user_id`),
   CONSTRAINT `fk_cart_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` (`cart_id`, `created_at`, `user_id`) VALUES
+	(7, '2021-05-24 15:46:48', 6),
+	(8, '2021-05-24 16:27:25', 6);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `cart_article`;
@@ -109,9 +112,12 @@ CREATE TABLE IF NOT EXISTS `cart_article` (
   KEY `fk_cart_article_article_id` (`article_id`),
   CONSTRAINT `fk_cart_article_article_id` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_cart_article_cart_id` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40000 ALTER TABLE `cart_article` DISABLE KEYS */;
+INSERT INTO `cart_article` (`cart_article_id`, `quantity`, `cart_id`, `article_id`) VALUES
+	(1, 5, 7, 16),
+	(3, 1, 7, 17);
 /*!40000 ALTER TABLE `cart_article` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `category`;
@@ -172,9 +178,11 @@ CREATE TABLE IF NOT EXISTS `order` (
   PRIMARY KEY (`order_id`),
   UNIQUE KEY `uq_order_cart_id` (`cart_id`),
   CONSTRAINT `fk_order_cart_id` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
+INSERT INTO `order` (`order_id`, `created_at`, `status`, `cart_id`) VALUES
+	(7, '2021-05-24 16:26:16', 'completed', 7);
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 
 DROP TABLE IF EXISTS `photo`;

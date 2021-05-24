@@ -833,6 +833,36 @@
 						}
 					]
 				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{API_USER_AUTH_TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
 			]
 		},
 		{
@@ -3906,6 +3936,1096 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "GET the latest cart for the authorized user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/cart",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET the latest cart for the authorized user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2534"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9e6-sL90E1hJiYiMl/x2Bu68U+E7iC0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 14:23:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articles\": [\n        {\n            \"cartArticleId\": 1,\n            \"articleId\": 16,\n            \"quantity\": 5,\n            \"article\": {\n                \"prices\": [],\n                \"photos\": [\n                    {\n                        \"photoId\": 22,\n                        \"imagePath\": \"static/uploads/2021/05/4a287f88-7e5e-424e-b2e6-e7e1fd42b3da-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 23,\n                        \"imagePath\": \"static/uploads/2021/05/96c789c0-f661-424d-8374-f3a847543459-frank-r-ShHkXuZdpTw-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 28,\n                        \"imagePath\": \"static/uploads/2021/05/bb267a51-8221-454f-83c3-8f5389c43a96-anas-alshanti-feXpdV001o4-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 29,\n                        \"imagePath\": \"static/uploads/2021/05/7565e626-3a41-4caa-a065-17c6920b7aba-dries-augustyns-yiCOCqZ-ig4-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 30,\n                        \"imagePath\": \"static/uploads/2021/05/aff9bee8-8ff7-4c56-9c72-888477eb8b5f-denny-muller-4u6TUbreFc0-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 31,\n                        \"imagePath\": \"static/uploads/2021/05/a3549188-687d-4256-9659-171852b2d184-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                    }\n                ],\n                \"features\": [],\n                \"articleId\": 16,\n                \"title\": \"HDD 1\",\n                \"excerpt\": \"Ovo je kratak opis diska...\",\n                \"description\": \"Ovo je detaljan opis diska...   \",\n                \"isActive\": true,\n                \"isPromoted\": true,\n                \"createdAt\": \"2021-05-19T16:10:35.000Z\",\n                \"categoryId\": 5,\n                \"currentPrice\": 59.9,\n                \"category\": {\n                    \"parentCategoryId\": 4,\n                    \"parentCategory\": null,\n                    \"subcategories\": [],\n                    \"features\": [],\n                    \"categoryId\": 5,\n                    \"name\": \"Magnetni diskovi\",\n                    \"imagePath\": \"/static/categories/hdd-classic.png\"\n                }\n            }\n        },\n        {\n            \"cartArticleId\": 2,\n            \"articleId\": 17,\n            \"quantity\": 1,\n            \"article\": {\n                \"prices\": [],\n                \"photos\": [\n                    {\n                        \"photoId\": 25,\n                        \"imagePath\": \"static/uploads/2021/05/b1de3f1f-b70f-46cc-a566-023fa7dc3d56-alexandre-debieve-FO7JIlwjOtU-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 26,\n                        \"imagePath\": \"static/uploads/2021/05/cb1727af-365f-4b33-b81a-ef03cfe57cc4-cooler-933691_1280.jpg\"\n                    },\n                    {\n                        \"photoId\": 27,\n                        \"imagePath\": \"static/uploads/2021/05/16e50e93-9e11-4c55-b196-d3a08de20bc4-cyber-2377718_1280.jpg\"\n                    }\n                ],\n                \"features\": [],\n                \"articleId\": 17,\n                \"title\": \"MB 111\",\n                \"excerpt\": \"Ovo je kratak opis mp...\",\n                \"description\": \"Ovo je detaljan opis mp...   \",\n                \"isActive\": true,\n                \"isPromoted\": true,\n                \"createdAt\": \"2021-05-19T16:11:36.000Z\",\n                \"categoryId\": 3,\n                \"currentPrice\": 39.9,\n                \"category\": {\n                    \"parentCategoryId\": 1,\n                    \"parentCategory\": null,\n                    \"subcategories\": [],\n                    \"features\": [],\n                    \"categoryId\": 3,\n                    \"name\": \"Matične poloče\",\n                    \"imagePath\": \"/static/categories/mb.jpg\"\n                }\n            }\n        }\n    ],\n    \"order\": null,\n    \"cartId\": 7,\n    \"createdAt\": \"2021-05-24T14:46:48.000Z\",\n    \"userId\": 6,\n    \"user\": {\n        \"passwordResetCode\": null,\n        \"userId\": 6,\n        \"email\": \"mtair@singidunum.ac.rs\",\n        \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n        \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n        \"forename\": \"Milan\",\n        \"surname\": \"Tair\",\n        \"phoneNumber\": \"+381113093267\",\n        \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n        \"isActive\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "POST a new article to the cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"articleId\": 17,\r\n  \"quantity\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/cart",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new article to the cart - with a non-existing article ID",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"articleId\": 4,\r\n  \"quantity\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "18"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12-SccHLJzhuM6WRXWOWDyRsXqUMrw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 14:21:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Article not found."
+						},
+						{
+							"name": "POST a new article to the cart - with an invalid quantity value",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"articleId\": 16,\r\n  \"quantity\": -5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "159"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9f-nZqlrASHSXmJv9M3q34TyFXoNzE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 14:22:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"instancePath\": \"/quantity\",\n        \"schemaPath\": \"#/properties/quantity/minimum\",\n        \"keyword\": \"minimum\",\n        \"params\": {\n            \"comparison\": \">=\",\n            \"limit\": 0\n        },\n        \"message\": \"must be >= 0\"\n    }\n]"
+						},
+						{
+							"name": "POST a new article to the cart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"articleId\": 16,\r\n  \"quantity\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1353"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"549-kWA04MMWgotXb2LLMDIz+BGXCB0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 14:22:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articles\": [\n        {\n            \"cartArticleId\": 1,\n            \"articleId\": 16,\n            \"quantity\": 2,\n            \"article\": {\n                \"prices\": [],\n                \"photos\": [\n                    {\n                        \"photoId\": 22,\n                        \"imagePath\": \"static/uploads/2021/05/4a287f88-7e5e-424e-b2e6-e7e1fd42b3da-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 23,\n                        \"imagePath\": \"static/uploads/2021/05/96c789c0-f661-424d-8374-f3a847543459-frank-r-ShHkXuZdpTw-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 28,\n                        \"imagePath\": \"static/uploads/2021/05/bb267a51-8221-454f-83c3-8f5389c43a96-anas-alshanti-feXpdV001o4-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 29,\n                        \"imagePath\": \"static/uploads/2021/05/7565e626-3a41-4caa-a065-17c6920b7aba-dries-augustyns-yiCOCqZ-ig4-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 30,\n                        \"imagePath\": \"static/uploads/2021/05/aff9bee8-8ff7-4c56-9c72-888477eb8b5f-denny-muller-4u6TUbreFc0-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 31,\n                        \"imagePath\": \"static/uploads/2021/05/a3549188-687d-4256-9659-171852b2d184-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                    }\n                ],\n                \"features\": [],\n                \"articleId\": 16,\n                \"title\": \"HDD 1\",\n                \"excerpt\": \"Ovo je kratak opis diska...\",\n                \"description\": \"Ovo je detaljan opis diska...   \",\n                \"isActive\": true,\n                \"isPromoted\": true,\n                \"createdAt\": \"2021-05-19T16:10:35.000Z\",\n                \"categoryId\": 5,\n                \"currentPrice\": 59.9,\n                \"category\": {\n                    \"parentCategoryId\": 4,\n                    \"parentCategory\": null,\n                    \"subcategories\": [],\n                    \"features\": [],\n                    \"categoryId\": 5,\n                    \"name\": \"Magnetni diskovi\",\n                    \"imagePath\": \"/static/categories/hdd-classic.png\"\n                }\n            }\n        }\n    ],\n    \"order\": null,\n    \"cartId\": 7,\n    \"createdAt\": \"2021-05-24T14:46:48.000Z\",\n    \"userId\": 6\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT a new article quantity value into the cart",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"articleId\": 17,\r\n  \"quantity\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/cart",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT a new article quantity value into the cart",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"articleId\": 17,\r\n  \"quantity\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2199"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"897-GGq3ao2yvQHd/9hjE4gvmzYZpK0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 14:24:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articles\": [\n        {\n            \"cartArticleId\": 1,\n            \"articleId\": 16,\n            \"quantity\": 5,\n            \"article\": {\n                \"prices\": [],\n                \"photos\": [\n                    {\n                        \"photoId\": 22,\n                        \"imagePath\": \"static/uploads/2021/05/4a287f88-7e5e-424e-b2e6-e7e1fd42b3da-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 23,\n                        \"imagePath\": \"static/uploads/2021/05/96c789c0-f661-424d-8374-f3a847543459-frank-r-ShHkXuZdpTw-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 28,\n                        \"imagePath\": \"static/uploads/2021/05/bb267a51-8221-454f-83c3-8f5389c43a96-anas-alshanti-feXpdV001o4-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 29,\n                        \"imagePath\": \"static/uploads/2021/05/7565e626-3a41-4caa-a065-17c6920b7aba-dries-augustyns-yiCOCqZ-ig4-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 30,\n                        \"imagePath\": \"static/uploads/2021/05/aff9bee8-8ff7-4c56-9c72-888477eb8b5f-denny-muller-4u6TUbreFc0-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 31,\n                        \"imagePath\": \"static/uploads/2021/05/a3549188-687d-4256-9659-171852b2d184-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                    }\n                ],\n                \"features\": [],\n                \"articleId\": 16,\n                \"title\": \"HDD 1\",\n                \"excerpt\": \"Ovo je kratak opis diska...\",\n                \"description\": \"Ovo je detaljan opis diska...   \",\n                \"isActive\": true,\n                \"isPromoted\": true,\n                \"createdAt\": \"2021-05-19T16:10:35.000Z\",\n                \"categoryId\": 5,\n                \"currentPrice\": 59.9,\n                \"category\": {\n                    \"parentCategoryId\": 4,\n                    \"parentCategory\": null,\n                    \"subcategories\": [],\n                    \"features\": [],\n                    \"categoryId\": 5,\n                    \"name\": \"Magnetni diskovi\",\n                    \"imagePath\": \"/static/categories/hdd-classic.png\"\n                }\n            }\n        },\n        {\n            \"cartArticleId\": 2,\n            \"articleId\": 17,\n            \"quantity\": 1,\n            \"article\": {\n                \"prices\": [],\n                \"photos\": [\n                    {\n                        \"photoId\": 25,\n                        \"imagePath\": \"static/uploads/2021/05/b1de3f1f-b70f-46cc-a566-023fa7dc3d56-alexandre-debieve-FO7JIlwjOtU-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 26,\n                        \"imagePath\": \"static/uploads/2021/05/cb1727af-365f-4b33-b81a-ef03cfe57cc4-cooler-933691_1280.jpg\"\n                    },\n                    {\n                        \"photoId\": 27,\n                        \"imagePath\": \"static/uploads/2021/05/16e50e93-9e11-4c55-b196-d3a08de20bc4-cyber-2377718_1280.jpg\"\n                    }\n                ],\n                \"features\": [],\n                \"articleId\": 17,\n                \"title\": \"MB 111\",\n                \"excerpt\": \"Ovo je kratak opis mp...\",\n                \"description\": \"Ovo je detaljan opis mp...   \",\n                \"isActive\": true,\n                \"isPromoted\": true,\n                \"createdAt\": \"2021-05-19T16:11:36.000Z\",\n                \"categoryId\": 3,\n                \"currentPrice\": 39.9,\n                \"category\": {\n                    \"parentCategoryId\": 1,\n                    \"parentCategory\": null,\n                    \"subcategories\": [],\n                    \"features\": [],\n                    \"categoryId\": 3,\n                    \"name\": \"Matične poloče\",\n                    \"imagePath\": \"/static/categories/mb.jpg\"\n                }\n            }\n        }\n    ],\n    \"order\": null,\n    \"cartId\": 7,\n    \"createdAt\": \"2021-05-24T14:46:48.000Z\",\n    \"userId\": 6\n}"
+						},
+						{
+							"name": "PUT a new article quantity value into the cart - delete an article from the cart (quantity = 0)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"articleId\": 17,\r\n  \"quantity\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1353"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"549-8VjlNK2a4BzuArL+Zd/meOcRUWY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 14:25:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articles\": [\n        {\n            \"cartArticleId\": 1,\n            \"articleId\": 16,\n            \"quantity\": 5,\n            \"article\": {\n                \"prices\": [],\n                \"photos\": [\n                    {\n                        \"photoId\": 22,\n                        \"imagePath\": \"static/uploads/2021/05/4a287f88-7e5e-424e-b2e6-e7e1fd42b3da-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 23,\n                        \"imagePath\": \"static/uploads/2021/05/96c789c0-f661-424d-8374-f3a847543459-frank-r-ShHkXuZdpTw-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 28,\n                        \"imagePath\": \"static/uploads/2021/05/bb267a51-8221-454f-83c3-8f5389c43a96-anas-alshanti-feXpdV001o4-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 29,\n                        \"imagePath\": \"static/uploads/2021/05/7565e626-3a41-4caa-a065-17c6920b7aba-dries-augustyns-yiCOCqZ-ig4-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 30,\n                        \"imagePath\": \"static/uploads/2021/05/aff9bee8-8ff7-4c56-9c72-888477eb8b5f-denny-muller-4u6TUbreFc0-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 31,\n                        \"imagePath\": \"static/uploads/2021/05/a3549188-687d-4256-9659-171852b2d184-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                    }\n                ],\n                \"features\": [],\n                \"articleId\": 16,\n                \"title\": \"HDD 1\",\n                \"excerpt\": \"Ovo je kratak opis diska...\",\n                \"description\": \"Ovo je detaljan opis diska...   \",\n                \"isActive\": true,\n                \"isPromoted\": true,\n                \"createdAt\": \"2021-05-19T16:10:35.000Z\",\n                \"categoryId\": 5,\n                \"currentPrice\": 59.9,\n                \"category\": {\n                    \"parentCategoryId\": 4,\n                    \"parentCategory\": null,\n                    \"subcategories\": [],\n                    \"features\": [],\n                    \"categoryId\": 5,\n                    \"name\": \"Magnetni diskovi\",\n                    \"imagePath\": \"/static/categories/hdd-classic.png\"\n                }\n            }\n        }\n    ],\n    \"order\": null,\n    \"cartId\": 7,\n    \"createdAt\": \"2021-05-24T14:46:48.000Z\",\n    \"userId\": 6\n}"
+						}
+					]
+				},
+				{
+					"name": "POST a new order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/cart/order",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart",
+								"order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/cart/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2601"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a29-GXrFnTvXVuZoyEVq0ZHES/M2N0w\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 14:26:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articles\": [\n        {\n            \"cartArticleId\": 1,\n            \"articleId\": 16,\n            \"quantity\": 5,\n            \"article\": {\n                \"prices\": [],\n                \"photos\": [\n                    {\n                        \"photoId\": 22,\n                        \"imagePath\": \"static/uploads/2021/05/4a287f88-7e5e-424e-b2e6-e7e1fd42b3da-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 23,\n                        \"imagePath\": \"static/uploads/2021/05/96c789c0-f661-424d-8374-f3a847543459-frank-r-ShHkXuZdpTw-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 28,\n                        \"imagePath\": \"static/uploads/2021/05/bb267a51-8221-454f-83c3-8f5389c43a96-anas-alshanti-feXpdV001o4-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 29,\n                        \"imagePath\": \"static/uploads/2021/05/7565e626-3a41-4caa-a065-17c6920b7aba-dries-augustyns-yiCOCqZ-ig4-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 30,\n                        \"imagePath\": \"static/uploads/2021/05/aff9bee8-8ff7-4c56-9c72-888477eb8b5f-denny-muller-4u6TUbreFc0-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 31,\n                        \"imagePath\": \"static/uploads/2021/05/a3549188-687d-4256-9659-171852b2d184-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                    }\n                ],\n                \"features\": [],\n                \"articleId\": 16,\n                \"title\": \"HDD 1\",\n                \"excerpt\": \"Ovo je kratak opis diska...\",\n                \"description\": \"Ovo je detaljan opis diska...   \",\n                \"isActive\": true,\n                \"isPromoted\": true,\n                \"createdAt\": \"2021-05-19T16:10:35.000Z\",\n                \"categoryId\": 5,\n                \"currentPrice\": 59.9,\n                \"category\": {\n                    \"parentCategoryId\": 4,\n                    \"parentCategory\": null,\n                    \"subcategories\": [],\n                    \"features\": [],\n                    \"categoryId\": 5,\n                    \"name\": \"Magnetni diskovi\",\n                    \"imagePath\": \"/static/categories/hdd-classic.png\"\n                }\n            }\n        },\n        {\n            \"cartArticleId\": 3,\n            \"articleId\": 17,\n            \"quantity\": 1,\n            \"article\": {\n                \"prices\": [],\n                \"photos\": [\n                    {\n                        \"photoId\": 25,\n                        \"imagePath\": \"static/uploads/2021/05/b1de3f1f-b70f-46cc-a566-023fa7dc3d56-alexandre-debieve-FO7JIlwjOtU-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 26,\n                        \"imagePath\": \"static/uploads/2021/05/cb1727af-365f-4b33-b81a-ef03cfe57cc4-cooler-933691_1280.jpg\"\n                    },\n                    {\n                        \"photoId\": 27,\n                        \"imagePath\": \"static/uploads/2021/05/16e50e93-9e11-4c55-b196-d3a08de20bc4-cyber-2377718_1280.jpg\"\n                    }\n                ],\n                \"features\": [],\n                \"articleId\": 17,\n                \"title\": \"MB 111\",\n                \"excerpt\": \"Ovo je kratak opis mp...\",\n                \"description\": \"Ovo je detaljan opis mp...   \",\n                \"isActive\": true,\n                \"isPromoted\": true,\n                \"createdAt\": \"2021-05-19T16:11:36.000Z\",\n                \"categoryId\": 3,\n                \"currentPrice\": 39.9,\n                \"category\": {\n                    \"parentCategoryId\": 1,\n                    \"parentCategory\": null,\n                    \"subcategories\": [],\n                    \"features\": [],\n                    \"categoryId\": 3,\n                    \"name\": \"Matične poloče\",\n                    \"imagePath\": \"/static/categories/mb.jpg\"\n                }\n            }\n        }\n    ],\n    \"order\": {\n        \"orderId\": 7,\n        \"createdAt\": \"2021-05-24T15:26:16.000Z\",\n        \"status\": \"pending\"\n    },\n    \"cartId\": 7,\n    \"createdAt\": \"2021-05-24T14:46:48.000Z\",\n    \"userId\": 6,\n    \"user\": {\n        \"passwordResetCode\": null,\n        \"userId\": 6,\n        \"email\": \"mtair@singidunum.ac.rs\",\n        \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n        \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n        \"forename\": \"Milan\",\n        \"surname\": \"Tair\",\n        \"phoneNumber\": \"+381113093267\",\n        \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n        \"isActive\": true\n    }\n}"
+						},
+						{
+							"name": "POST a new order - with an empty cart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/cart/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"order"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-KXmriAladKHCVK++XAPDZX28gks\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 14:27:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": -3011,\n    \"errorMessage\": \"You cannot make an order with an empty cart.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GET all my orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/cart/order/my",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart",
+								"order",
+								"my"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all my orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/cart/order/my",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"order",
+										"my"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "5556"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15b4-hZ560rJTJ3e8CpS+csa4modBsXQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 14:28:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"articles\": [\n            {\n                \"cartArticleId\": 1,\n                \"articleId\": 16,\n                \"quantity\": 5,\n                \"article\": {\n                    \"prices\": [],\n                    \"photos\": [\n                        {\n                            \"photoId\": 22,\n                            \"imagePath\": \"static/uploads/2021/05/4a287f88-7e5e-424e-b2e6-e7e1fd42b3da-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 23,\n                            \"imagePath\": \"static/uploads/2021/05/96c789c0-f661-424d-8374-f3a847543459-frank-r-ShHkXuZdpTw-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 28,\n                            \"imagePath\": \"static/uploads/2021/05/bb267a51-8221-454f-83c3-8f5389c43a96-anas-alshanti-feXpdV001o4-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 29,\n                            \"imagePath\": \"static/uploads/2021/05/7565e626-3a41-4caa-a065-17c6920b7aba-dries-augustyns-yiCOCqZ-ig4-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 30,\n                            \"imagePath\": \"static/uploads/2021/05/aff9bee8-8ff7-4c56-9c72-888477eb8b5f-denny-muller-4u6TUbreFc0-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 31,\n                            \"imagePath\": \"static/uploads/2021/05/a3549188-687d-4256-9659-171852b2d184-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                        }\n                    ],\n                    \"features\": [],\n                    \"articleId\": 16,\n                    \"title\": \"HDD 1\",\n                    \"excerpt\": \"Ovo je kratak opis diska...\",\n                    \"description\": \"Ovo je detaljan opis diska...   \",\n                    \"isActive\": true,\n                    \"isPromoted\": true,\n                    \"createdAt\": \"2021-05-19T16:10:35.000Z\",\n                    \"categoryId\": 5,\n                    \"currentPrice\": 59.9,\n                    \"category\": {\n                        \"parentCategoryId\": 4,\n                        \"parentCategory\": null,\n                        \"subcategories\": [],\n                        \"features\": [],\n                        \"categoryId\": 5,\n                        \"name\": \"Magnetni diskovi\",\n                        \"imagePath\": \"/static/categories/hdd-classic.png\"\n                    }\n                }\n            },\n            {\n                \"cartArticleId\": 3,\n                \"articleId\": 17,\n                \"quantity\": 1,\n                \"article\": {\n                    \"prices\": [],\n                    \"photos\": [\n                        {\n                            \"photoId\": 25,\n                            \"imagePath\": \"static/uploads/2021/05/b1de3f1f-b70f-46cc-a566-023fa7dc3d56-alexandre-debieve-FO7JIlwjOtU-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 26,\n                            \"imagePath\": \"static/uploads/2021/05/cb1727af-365f-4b33-b81a-ef03cfe57cc4-cooler-933691_1280.jpg\"\n                        },\n                        {\n                            \"photoId\": 27,\n                            \"imagePath\": \"static/uploads/2021/05/16e50e93-9e11-4c55-b196-d3a08de20bc4-cyber-2377718_1280.jpg\"\n                        }\n                    ],\n                    \"features\": [],\n                    \"articleId\": 17,\n                    \"title\": \"MB 111\",\n                    \"excerpt\": \"Ovo je kratak opis mp...\",\n                    \"description\": \"Ovo je detaljan opis mp...   \",\n                    \"isActive\": true,\n                    \"isPromoted\": true,\n                    \"createdAt\": \"2021-05-19T16:11:36.000Z\",\n                    \"categoryId\": 3,\n                    \"currentPrice\": 39.9,\n                    \"category\": {\n                        \"parentCategoryId\": 1,\n                        \"parentCategory\": null,\n                        \"subcategories\": [],\n                        \"features\": [],\n                        \"categoryId\": 3,\n                        \"name\": \"Matične poloče\",\n                        \"imagePath\": \"/static/categories/mb.jpg\"\n                    }\n                }\n            }\n        ],\n        \"order\": {\n            \"orderId\": 7,\n            \"createdAt\": \"2021-05-24T15:26:16.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 7,\n        \"createdAt\": \"2021-05-24T14:46:48.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 6,\n            \"createdAt\": \"2021-05-24T14:46:45.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 6,\n        \"createdAt\": \"2021-05-24T14:45:10.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 5,\n            \"createdAt\": \"2021-05-24T14:45:08.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 5,\n        \"createdAt\": \"2021-05-24T14:44:51.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 4,\n            \"createdAt\": \"2021-05-24T14:44:44.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 4,\n        \"createdAt\": \"2021-05-24T14:15:48.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 3,\n            \"createdAt\": \"2021-05-24T14:15:19.000Z\",\n            \"status\": \"rejected\"\n        },\n        \"cartId\": 3,\n        \"createdAt\": \"2021-05-24T14:14:13.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 2,\n            \"createdAt\": \"2021-05-24T14:13:22.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 2,\n        \"createdAt\": \"2021-05-24T14:12:23.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 1,\n            \"createdAt\": \"2021-05-24T14:12:18.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 1,\n        \"createdAt\": \"2021-05-24T14:12:08.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    }\n]"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{API_USER_AUTH_TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Cart by Administrator",
+			"item": [
+				{
+					"name": "GET all orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/order",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "5556"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15b4-hZ560rJTJ3e8CpS+csa4modBsXQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 14:30:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"articles\": [\n            {\n                \"cartArticleId\": 1,\n                \"articleId\": 16,\n                \"quantity\": 5,\n                \"article\": {\n                    \"prices\": [],\n                    \"photos\": [\n                        {\n                            \"photoId\": 22,\n                            \"imagePath\": \"static/uploads/2021/05/4a287f88-7e5e-424e-b2e6-e7e1fd42b3da-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 23,\n                            \"imagePath\": \"static/uploads/2021/05/96c789c0-f661-424d-8374-f3a847543459-frank-r-ShHkXuZdpTw-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 28,\n                            \"imagePath\": \"static/uploads/2021/05/bb267a51-8221-454f-83c3-8f5389c43a96-anas-alshanti-feXpdV001o4-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 29,\n                            \"imagePath\": \"static/uploads/2021/05/7565e626-3a41-4caa-a065-17c6920b7aba-dries-augustyns-yiCOCqZ-ig4-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 30,\n                            \"imagePath\": \"static/uploads/2021/05/aff9bee8-8ff7-4c56-9c72-888477eb8b5f-denny-muller-4u6TUbreFc0-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 31,\n                            \"imagePath\": \"static/uploads/2021/05/a3549188-687d-4256-9659-171852b2d184-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                        }\n                    ],\n                    \"features\": [],\n                    \"articleId\": 16,\n                    \"title\": \"HDD 1\",\n                    \"excerpt\": \"Ovo je kratak opis diska...\",\n                    \"description\": \"Ovo je detaljan opis diska...   \",\n                    \"isActive\": true,\n                    \"isPromoted\": true,\n                    \"createdAt\": \"2021-05-19T16:10:35.000Z\",\n                    \"categoryId\": 5,\n                    \"currentPrice\": 59.9,\n                    \"category\": {\n                        \"parentCategoryId\": 4,\n                        \"parentCategory\": null,\n                        \"subcategories\": [],\n                        \"features\": [],\n                        \"categoryId\": 5,\n                        \"name\": \"Magnetni diskovi\",\n                        \"imagePath\": \"/static/categories/hdd-classic.png\"\n                    }\n                }\n            },\n            {\n                \"cartArticleId\": 3,\n                \"articleId\": 17,\n                \"quantity\": 1,\n                \"article\": {\n                    \"prices\": [],\n                    \"photos\": [\n                        {\n                            \"photoId\": 25,\n                            \"imagePath\": \"static/uploads/2021/05/b1de3f1f-b70f-46cc-a566-023fa7dc3d56-alexandre-debieve-FO7JIlwjOtU-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 26,\n                            \"imagePath\": \"static/uploads/2021/05/cb1727af-365f-4b33-b81a-ef03cfe57cc4-cooler-933691_1280.jpg\"\n                        },\n                        {\n                            \"photoId\": 27,\n                            \"imagePath\": \"static/uploads/2021/05/16e50e93-9e11-4c55-b196-d3a08de20bc4-cyber-2377718_1280.jpg\"\n                        }\n                    ],\n                    \"features\": [],\n                    \"articleId\": 17,\n                    \"title\": \"MB 111\",\n                    \"excerpt\": \"Ovo je kratak opis mp...\",\n                    \"description\": \"Ovo je detaljan opis mp...   \",\n                    \"isActive\": true,\n                    \"isPromoted\": true,\n                    \"createdAt\": \"2021-05-19T16:11:36.000Z\",\n                    \"categoryId\": 3,\n                    \"currentPrice\": 39.9,\n                    \"category\": {\n                        \"parentCategoryId\": 1,\n                        \"parentCategory\": null,\n                        \"subcategories\": [],\n                        \"features\": [],\n                        \"categoryId\": 3,\n                        \"name\": \"Matične poloče\",\n                        \"imagePath\": \"/static/categories/mb.jpg\"\n                    }\n                }\n            }\n        ],\n        \"order\": {\n            \"orderId\": 7,\n            \"createdAt\": \"2021-05-24T15:26:16.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 7,\n        \"createdAt\": \"2021-05-24T14:46:48.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 6,\n            \"createdAt\": \"2021-05-24T14:46:45.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 6,\n        \"createdAt\": \"2021-05-24T14:45:10.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 5,\n            \"createdAt\": \"2021-05-24T14:45:08.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 5,\n        \"createdAt\": \"2021-05-24T14:44:51.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 4,\n            \"createdAt\": \"2021-05-24T14:44:44.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 4,\n        \"createdAt\": \"2021-05-24T14:15:48.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 3,\n            \"createdAt\": \"2021-05-24T14:15:19.000Z\",\n            \"status\": \"rejected\"\n        },\n        \"cartId\": 3,\n        \"createdAt\": \"2021-05-24T14:14:13.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 2,\n            \"createdAt\": \"2021-05-24T14:13:22.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 2,\n        \"createdAt\": \"2021-05-24T14:12:23.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 1,\n            \"createdAt\": \"2021-05-24T14:12:18.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 1,\n        \"createdAt\": \"2021-05-24T14:12:08.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET all orders of a user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/user/6/order",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user",
+								"6",
+								"order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all orders of a user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user/6/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"6",
+										"order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "5556"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15b4-hZ560rJTJ3e8CpS+csa4modBsXQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 14:31:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"articles\": [\n            {\n                \"cartArticleId\": 1,\n                \"articleId\": 16,\n                \"quantity\": 5,\n                \"article\": {\n                    \"prices\": [],\n                    \"photos\": [\n                        {\n                            \"photoId\": 22,\n                            \"imagePath\": \"static/uploads/2021/05/4a287f88-7e5e-424e-b2e6-e7e1fd42b3da-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 23,\n                            \"imagePath\": \"static/uploads/2021/05/96c789c0-f661-424d-8374-f3a847543459-frank-r-ShHkXuZdpTw-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 28,\n                            \"imagePath\": \"static/uploads/2021/05/bb267a51-8221-454f-83c3-8f5389c43a96-anas-alshanti-feXpdV001o4-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 29,\n                            \"imagePath\": \"static/uploads/2021/05/7565e626-3a41-4caa-a065-17c6920b7aba-dries-augustyns-yiCOCqZ-ig4-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 30,\n                            \"imagePath\": \"static/uploads/2021/05/aff9bee8-8ff7-4c56-9c72-888477eb8b5f-denny-muller-4u6TUbreFc0-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 31,\n                            \"imagePath\": \"static/uploads/2021/05/a3549188-687d-4256-9659-171852b2d184-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                        }\n                    ],\n                    \"features\": [],\n                    \"articleId\": 16,\n                    \"title\": \"HDD 1\",\n                    \"excerpt\": \"Ovo je kratak opis diska...\",\n                    \"description\": \"Ovo je detaljan opis diska...   \",\n                    \"isActive\": true,\n                    \"isPromoted\": true,\n                    \"createdAt\": \"2021-05-19T16:10:35.000Z\",\n                    \"categoryId\": 5,\n                    \"currentPrice\": 59.9,\n                    \"category\": {\n                        \"parentCategoryId\": 4,\n                        \"parentCategory\": null,\n                        \"subcategories\": [],\n                        \"features\": [],\n                        \"categoryId\": 5,\n                        \"name\": \"Magnetni diskovi\",\n                        \"imagePath\": \"/static/categories/hdd-classic.png\"\n                    }\n                }\n            },\n            {\n                \"cartArticleId\": 3,\n                \"articleId\": 17,\n                \"quantity\": 1,\n                \"article\": {\n                    \"prices\": [],\n                    \"photos\": [\n                        {\n                            \"photoId\": 25,\n                            \"imagePath\": \"static/uploads/2021/05/b1de3f1f-b70f-46cc-a566-023fa7dc3d56-alexandre-debieve-FO7JIlwjOtU-unsplash.jpg\"\n                        },\n                        {\n                            \"photoId\": 26,\n                            \"imagePath\": \"static/uploads/2021/05/cb1727af-365f-4b33-b81a-ef03cfe57cc4-cooler-933691_1280.jpg\"\n                        },\n                        {\n                            \"photoId\": 27,\n                            \"imagePath\": \"static/uploads/2021/05/16e50e93-9e11-4c55-b196-d3a08de20bc4-cyber-2377718_1280.jpg\"\n                        }\n                    ],\n                    \"features\": [],\n                    \"articleId\": 17,\n                    \"title\": \"MB 111\",\n                    \"excerpt\": \"Ovo je kratak opis mp...\",\n                    \"description\": \"Ovo je detaljan opis mp...   \",\n                    \"isActive\": true,\n                    \"isPromoted\": true,\n                    \"createdAt\": \"2021-05-19T16:11:36.000Z\",\n                    \"categoryId\": 3,\n                    \"currentPrice\": 39.9,\n                    \"category\": {\n                        \"parentCategoryId\": 1,\n                        \"parentCategory\": null,\n                        \"subcategories\": [],\n                        \"features\": [],\n                        \"categoryId\": 3,\n                        \"name\": \"Matične poloče\",\n                        \"imagePath\": \"/static/categories/mb.jpg\"\n                    }\n                }\n            }\n        ],\n        \"order\": {\n            \"orderId\": 7,\n            \"createdAt\": \"2021-05-24T15:26:16.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 7,\n        \"createdAt\": \"2021-05-24T14:46:48.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 6,\n            \"createdAt\": \"2021-05-24T14:46:45.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 6,\n        \"createdAt\": \"2021-05-24T14:45:10.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 5,\n            \"createdAt\": \"2021-05-24T14:45:08.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 5,\n        \"createdAt\": \"2021-05-24T14:44:51.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 4,\n            \"createdAt\": \"2021-05-24T14:44:44.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 4,\n        \"createdAt\": \"2021-05-24T14:15:48.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 3,\n            \"createdAt\": \"2021-05-24T14:15:19.000Z\",\n            \"status\": \"rejected\"\n        },\n        \"cartId\": 3,\n        \"createdAt\": \"2021-05-24T14:14:13.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 2,\n            \"createdAt\": \"2021-05-24T14:13:22.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 2,\n        \"createdAt\": \"2021-05-24T14:12:23.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 1,\n            \"createdAt\": \"2021-05-24T14:12:18.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 1,\n        \"createdAt\": \"2021-05-24T14:12:08.000Z\",\n        \"userId\": 6,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 6,\n            \"email\": \"mtair@singidunum.ac.rs\",\n            \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n            \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n            \"forename\": \"Milan\",\n            \"surname\": \"Tair\",\n            \"phoneNumber\": \"+381113093267\",\n            \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n            \"isActive\": true\n        }\n    }\n]"
+						},
+						{
+							"name": "GET all orders of a user - non-existing user or the user has no orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user/1/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"1",
+										"order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 14:31:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						}
+					]
+				},
+				{
+					"name": "PUT a new status for a cart's order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"rejected\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/cart/7",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart",
+								"7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT a new status for a cart's order - with a invalid status",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"shipped\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart/3",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e5-8H0FmkBNpDfPnwwXv6DiOlbupl8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 14:43:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"instancePath\": \"/status\",\n        \"schemaPath\": \"#/properties/status/pattern\",\n        \"keyword\": \"pattern\",\n        \"params\": {\n            \"pattern\": \"^(pending|rejected|accepted|completed)$\"\n        },\n        \"message\": \"must match pattern \\\"^(pending|rejected|accepted|completed)$\\\"\"\n    }\n]"
+						},
+						{
+							"name": "PUT a new status for a cart's order",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"completed\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart/7",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2603"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a2b-H1bhQr0bvrBmMbpfYJiEC6RvCY4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 14:44:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articles\": [\n        {\n            \"cartArticleId\": 1,\n            \"articleId\": 16,\n            \"quantity\": 5,\n            \"article\": {\n                \"prices\": [],\n                \"photos\": [\n                    {\n                        \"photoId\": 22,\n                        \"imagePath\": \"static/uploads/2021/05/4a287f88-7e5e-424e-b2e6-e7e1fd42b3da-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 23,\n                        \"imagePath\": \"static/uploads/2021/05/96c789c0-f661-424d-8374-f3a847543459-frank-r-ShHkXuZdpTw-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 28,\n                        \"imagePath\": \"static/uploads/2021/05/bb267a51-8221-454f-83c3-8f5389c43a96-anas-alshanti-feXpdV001o4-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 29,\n                        \"imagePath\": \"static/uploads/2021/05/7565e626-3a41-4caa-a065-17c6920b7aba-dries-augustyns-yiCOCqZ-ig4-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 30,\n                        \"imagePath\": \"static/uploads/2021/05/aff9bee8-8ff7-4c56-9c72-888477eb8b5f-denny-muller-4u6TUbreFc0-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 31,\n                        \"imagePath\": \"static/uploads/2021/05/a3549188-687d-4256-9659-171852b2d184-denny-muller-1qL31aacAPA-unsplash.jpg\"\n                    }\n                ],\n                \"features\": [],\n                \"articleId\": 16,\n                \"title\": \"HDD 1\",\n                \"excerpt\": \"Ovo je kratak opis diska...\",\n                \"description\": \"Ovo je detaljan opis diska...   \",\n                \"isActive\": true,\n                \"isPromoted\": true,\n                \"createdAt\": \"2021-05-19T16:10:35.000Z\",\n                \"categoryId\": 5,\n                \"currentPrice\": 59.9,\n                \"category\": {\n                    \"parentCategoryId\": 4,\n                    \"parentCategory\": null,\n                    \"subcategories\": [],\n                    \"features\": [],\n                    \"categoryId\": 5,\n                    \"name\": \"Magnetni diskovi\",\n                    \"imagePath\": \"/static/categories/hdd-classic.png\"\n                }\n            }\n        },\n        {\n            \"cartArticleId\": 3,\n            \"articleId\": 17,\n            \"quantity\": 1,\n            \"article\": {\n                \"prices\": [],\n                \"photos\": [\n                    {\n                        \"photoId\": 25,\n                        \"imagePath\": \"static/uploads/2021/05/b1de3f1f-b70f-46cc-a566-023fa7dc3d56-alexandre-debieve-FO7JIlwjOtU-unsplash.jpg\"\n                    },\n                    {\n                        \"photoId\": 26,\n                        \"imagePath\": \"static/uploads/2021/05/cb1727af-365f-4b33-b81a-ef03cfe57cc4-cooler-933691_1280.jpg\"\n                    },\n                    {\n                        \"photoId\": 27,\n                        \"imagePath\": \"static/uploads/2021/05/16e50e93-9e11-4c55-b196-d3a08de20bc4-cyber-2377718_1280.jpg\"\n                    }\n                ],\n                \"features\": [],\n                \"articleId\": 17,\n                \"title\": \"MB 111\",\n                \"excerpt\": \"Ovo je kratak opis mp...\",\n                \"description\": \"Ovo je detaljan opis mp...   \",\n                \"isActive\": true,\n                \"isPromoted\": true,\n                \"createdAt\": \"2021-05-19T16:11:36.000Z\",\n                \"categoryId\": 3,\n                \"currentPrice\": 39.9,\n                \"category\": {\n                    \"parentCategoryId\": 1,\n                    \"parentCategory\": null,\n                    \"subcategories\": [],\n                    \"features\": [],\n                    \"categoryId\": 3,\n                    \"name\": \"Matične poloče\",\n                    \"imagePath\": \"/static/categories/mb.jpg\"\n                }\n            }\n        }\n    ],\n    \"order\": {\n        \"orderId\": 7,\n        \"createdAt\": \"2021-05-24T15:26:16.000Z\",\n        \"status\": \"completed\"\n    },\n    \"cartId\": 7,\n    \"createdAt\": \"2021-05-24T14:46:48.000Z\",\n    \"userId\": 6,\n    \"user\": {\n        \"passwordResetCode\": null,\n        \"userId\": 6,\n        \"email\": \"mtair@singidunum.ac.rs\",\n        \"createdAt\": \"2021-05-21T14:47:55.000Z\",\n        \"passwordHash\": \"$2b$11$BlWgwJPoeXGfyZNOYwZfIOlwOpR.fMYBQDtxqDCYPZW8VSrZoU99O\",\n        \"forename\": \"Milan\",\n        \"surname\": \"Tair\",\n        \"phoneNumber\": \"+381113093267\",\n        \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\",\n        \"isActive\": true\n    }\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{API_ADMINISTRATOR_AUTH_TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		}
 	],
 	"event": [
@@ -3932,6 +5052,14 @@
 		{
 			"key": "API_URL",
 			"value": "http://localhost:40080"
+		},
+		{
+			"key": "API_USER_AUTH_TOKEN",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWRlbnRpdHkiOiJtdGFpckBzaW5naWR1bnVtLmFjLnJzIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MjE4NTQ2MTksImV4cCI6MTYyMjQ1OTQxOSwiaXNzIjoibG9jYWxob3N0In0.FXobWJ6ir94n7ddNlnJi7aIS5F0fEmVrXcEioDswc2fXpIfxkDzfJBzs60z7lZjjdzmuB1DJWJOcluKbkcaMgxRn0mp0H0_NZ9q1tra_ji0aM18BTZJa2IXmf12YuVJKgEBmBOkTBa4b3-C9VpakQhPm5tPFDmP4VciXuhk0F62UEHgVCUOy3_8oUC3as42TyVjjVAGIrzQqleCG-UGuuVCL937DjHgwxuYRz_Nufs_K9CekqR5iD99hrNXxgp8DraZ9mw5wGz8mj1JObbUTTjCAEdKJ-SFVJs35Qp9eqrJQ60pzTCXF72kkEs4nCMmaKH9k4nWN1D7lECjIkTZcQQ"
+		},
+		{
+			"key": "API_ADMINISTRATOR_AUTH_TOKEN",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWRlbnRpdHkiOiJtdGFpciIsInJvbGUiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjIxODU4MTUwLCJleHAiOjE2MjI0NjI5NTAsImlzcyI6ImxvY2FsaG9zdCJ9.RAhjLNiyYHCHuDyl-ft9EmhqfkijquDRO8T8TUUJA339bfiiWB0mPKUrBYx9vxC_cY9CybuiYrWNj9f2LceQV889PBAVPuuWj3DYm8cibFkG4MBDomdHYlG09NkYLVQdnEdr42ZJ4mLCSMT0nPkrqXZNAkTcwwiHbrcobg5AY9VO0JM9eOtBIUep9EzJ9XygxL-Io8kNCm0dnHOy4arxWAXzXddo1_cQ2Z8kFJqyEh_UWMBXGOX-SKNEdiwkgxrAWzqF0gBRTV8_ORuQNDjxOpf1G3_ra4S9NwDL5RaUPsvPUVUsnomEoaCR2dmdS3E8yraNqgcBPOAeIuFc2f7rYQ"
 		}
 	]
 }
