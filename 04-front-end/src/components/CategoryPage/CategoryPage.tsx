@@ -1,7 +1,7 @@
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import BasePage, { BasePageProperties } from '../BasePage/BasePage';
 import CategoryModel from '../../../../03-back-end/src/components/category/model';
+import CategoryService from '../../services/CategoryService';
 
 class CategoryPageProperties extends BasePageProperties {
     match?: {
@@ -48,90 +48,44 @@ export default class CategoryPage extends BasePage<CategoryPageProperties> {
     }
 
     private apiGetTopLevelCategories() {
-        axios({
-            method: "get",
-            baseURL: "http://localhost:40080",
-            url: "/category",
-            timeout: 10000,
-            responseType: "text",
-            headers: {
-                Authorization: "Bearer FAKE-TOKEN"
-            },
-            // withCredentials: true,
-            maxRedirects: 0,
-        })
-        .then(res => {
-            if (!Array.isArray(res.data)) {
-                throw new Error("Invalid data received.");
-            }
-
-            this.setState({
-                title: "All categories",
-                subcategories: res.data,
-                showBackButton: false,
-                parentCategoryId: null,
-            });
-        })
-        .catch(err => {
-            const errorMessage = "" + err;
-
-            if (errorMessage.includes("404")) {
-                this.setState({
+        CategoryService.getTopLevelCategories()
+        .then(categories => {
+            if (categories.length === 0) {
+                return this.setState({
                     title: "No categories found",
                     subcategories: [],
                     showBackButton: true,
                     parentCategoryId: null,
                 });
-            } else {
-                this.setState({
-                    title: "Unable to load categories",
-                    subcategories: [],
-                    showBackButton: true,
-                    parentCategoryId: null,
-                });
             }
-        });
+
+            this.setState({
+                title: "All categories",
+                subcategories: categories,
+                showBackButton: false,
+                parentCategoryId: null,
+            });
+        })
     }
 
     private apiGetCategory(cId: number) {
-        axios({
-            method: "get",
-            baseURL: "http://localhost:40080",
-            url: "/category/" + cId,
-            timeout: 10000,
-            responseType: "text",
-            headers: {
-                Authorization: "Bearer FAKE-TOKEN"
-            },
-            // withCredentials: true,
-            maxRedirects: 0,
-        })
-        .then(res => {
-            this.setState({
-                title: res.data?.name,
-                subcategories: res.data?.subcategories,
-                parentCategoryId: res.data?.parentCategoryId,
-                showBackButton: true,
-            });
-        })
-        .catch(err => {
-            const errorMessage = "" + err;
-
-            if (errorMessage.includes("404")) {
-                this.setState({
+        CategoryService.getCategoryById(cId)
+        .then(result => {
+            if (result === null) {
+                return this.setState({
                     title: "Category not found",
                     subcategories: [],
                     showBackButton: true,
                     parentCategoryId: null,
                 });
-            } else {
-                this.setState({
-                    title: "Unable to load category data",
-                    subcategories: [],
-                    showBackButton: true,
-                    parentCategoryId: null,
-                });
             }
+
+            this.setState({
+                title: result.name,
+                subcategories: result.subcategories,
+                parentCategoryId: result.parentCategoryId,
+                showBackButton: true,
+            });
         });
     }
 
