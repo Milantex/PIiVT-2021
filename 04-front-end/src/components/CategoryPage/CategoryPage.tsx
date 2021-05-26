@@ -1,5 +1,7 @@
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import BasePage, { BasePageProperties } from '../BasePage/BasePage';
+import CategoryModel from '../../../../03-back-end/src/components/category/model';
 
 class CategoryPageProperties extends BasePageProperties {
     match?: {
@@ -11,7 +13,9 @@ class CategoryPageProperties extends BasePageProperties {
 
 class CategoryPageState {
     title: string = "";
-    subcategories: number[] = [];
+    subcategories: CategoryModel[] = [];
+    showBackButton: boolean = false;
+    parentCategoryId: number | null = null;
 }
 
 export default class CategoryPage extends BasePage<CategoryPageProperties> {
@@ -22,7 +26,9 @@ export default class CategoryPage extends BasePage<CategoryPageProperties> {
 
         this.state = {
             title: "Loading...",
-            subcategories: []
+            subcategories: [],
+            showBackButton: false,
+            parentCategoryId: null,
         };
     }
 
@@ -32,31 +38,101 @@ export default class CategoryPage extends BasePage<CategoryPageProperties> {
     }
 
     private getCategoryData() {
-        // Simulate getting data from the API:
-
         const cId = this.getCategoryId();
 
         if (cId === null) {
+            this.apiGetTopLevelCategories();
+        } else {
+            this.apiGetCategory(cId);
+        }
+    }
+
+    private apiGetTopLevelCategories() {
+        axios({
+            method: "get",
+            baseURL: "http://localhost:40080",
+            url: "/category",
+            timeout: 10000,
+            responseType: "text",
+            headers: {
+                Authorization: "Bearer FAKE-TOKEN"
+            },
+            // withCredentials: true,
+            maxRedirects: 0,
+        })
+        .then(res => {
+            if (!Array.isArray(res.data)) {
+                throw new Error("Invalid data received.");
+            }
+
             this.setState({
                 title: "All categories",
-                subcategories: [
-                    1, 4, 7, 13, 18,
-                ],
+                subcategories: res.data,
+                showBackButton: false,
+                parentCategoryId: null,
             });
-        } else {
+        })
+        .catch(err => {
+            const errorMessage = "" + err;
+
+            if (errorMessage.includes("404")) {
+                this.setState({
+                    title: "No categories found",
+                    subcategories: [],
+                    showBackButton: true,
+                    parentCategoryId: null,
+                });
+            } else {
+                this.setState({
+                    title: "Unable to load categories",
+                    subcategories: [],
+                    showBackButton: true,
+                    parentCategoryId: null,
+                });
+            }
+        });
+    }
+
+    private apiGetCategory(cId: number) {
+        axios({
+            method: "get",
+            baseURL: "http://localhost:40080",
+            url: "/category/" + cId,
+            timeout: 10000,
+            responseType: "text",
+            headers: {
+                Authorization: "Bearer FAKE-TOKEN"
+            },
+            // withCredentials: true,
+            maxRedirects: 0,
+        })
+        .then(res => {
             this.setState({
-                title: "Category " + cId,
-                subcategories: [
-                    cId,
-                    cId + 10,
-                    cId + 11,
-                    cId + 12,
-                    cId + 13,
-                    cId + 14,
-                    cId + 15,
-                ],
+                title: res.data?.name,
+                subcategories: res.data?.subcategories,
+                parentCategoryId: res.data?.parentCategoryId,
+                showBackButton: true,
             });
-        }
+        })
+        .catch(err => {
+            const errorMessage = "" + err;
+
+            if (errorMessage.includes("404")) {
+                this.setState({
+                    title: "Category not found",
+                    subcategories: [],
+                    showBackButton: true,
+                    parentCategoryId: null,
+                });
+            } else {
+                this.setState({
+                    title: "Unable to load category data",
+                    subcategories: [],
+                    showBackButton: true,
+                    parentCategoryId: null,
+                });
+            }
+        });
     }
 
     componentDidMount() {
@@ -72,21 +148,44 @@ export default class CategoryPage extends BasePage<CategoryPageProperties> {
     renderMain(): JSX.Element {
         return (
             <>
-                <h1>{ this.state.title }</h1>
-                <p>Podkategorije:</p>
-                <ul>
+                <h1>
                     {
-                        this.state.subcategories.map(
-                            cat => (
-                                <li key={ "subcategory-link-" + cat }>
-                                    <Link to={ "/category/" + cat }>
-                                        Potkategorija {cat}
-                                    </Link>
-                                </li>
-                            )
+                        this.state.showBackButton
+                        ? (
+                            <>
+                                <Link to={ "/category/" + (this.state.parentCategoryId ?? '') }>
+                                    &lt; Back
+                                </Link>
+                                |
+                            </>
                         )
+                        : ""
                     }
-                </ul>
+                    { this.state.title }
+                </h1>
+
+                {
+                    this.state.subcategories.length > 0
+                    ? (
+                        <>
+                            <p>Podkategorije:</p>
+                            <ul>
+                                {
+                                    this.state.subcategories.map(
+                                        catategory => (
+                                            <li key={ "subcategory-link-" + catategory.categoryId }>
+                                                <Link to={ "/category/" + catategory.categoryId }>
+                                                    { catategory.name }
+                                                </Link>
+                                            </li>
+                                        )
+                                    )
+                                }
+                            </ul>
+                        </>
+                    )
+                    : ""
+                }
             </>
         );
     }

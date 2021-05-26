@@ -22,7 +22,11 @@ import CartRouter from './components/cart/router';
 async function main() {
     const application: express.Application = express();
 
-    application.use(cors());
+    application.use(cors({
+        origin: "http://localhost:3000",
+        credential: true,
+    }));
+
     application.use(express.json());
     application.use(fileUpload({
         limits: {
