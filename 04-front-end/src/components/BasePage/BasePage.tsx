@@ -2,7 +2,8 @@ import React from "react";
 import { Row, Col } from 'react-bootstrap';
 
 class BasePageProperties {
-    sidebar?: JSX.Element = undefined
+    sidebar?: JSX.Element = undefined;
+    match?: any;
 }
 
 export { BasePageProperties };

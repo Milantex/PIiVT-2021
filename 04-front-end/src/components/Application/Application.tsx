@@ -7,7 +7,7 @@ import HomePage from '../HomePage/HomePage';
 import CategoryPage from '../CategoryPage/CategoryPage';
 import ContactPage from '../ContactPage/ContactPage';
 
-export default function Application() {
+export default function Application(props: any) {
   return (
     <BrowserRouter>
       <Container className="Application">
@@ -21,7 +21,7 @@ export default function Application() {
           <Switch>
             <Route exact path="/" component={ HomePage } />
 
-            <Route path="/category" component={ CategoryPage } />
+            <Route path="/category/:cid?" component={ CategoryPage } />
 
             <Route path="/contact">
               <ContactPage
