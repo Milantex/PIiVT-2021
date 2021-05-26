@@ -1,9 +1,7 @@
-import React from 'react';
+import BasePage from '../BasePage/BasePage';
 
-export default class HomePage extends React.Component {
-    // ...
-
-    render(): JSX.Element {
+export default class HomePage extends BasePage<{}> {
+    renderMain(): JSX.Element {
         return (
             <p>Ovo je početna stranica...</p>
         );

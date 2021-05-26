@@ -5,6 +5,7 @@ import './Application.sass';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from '../HomePage/HomePage';
 import CategoryPage from '../CategoryPage/CategoryPage';
+import ContactPage from '../ContactPage/ContactPage';
 
 export default function Application() {
   return (
@@ -23,7 +24,10 @@ export default function Application() {
             <Route path="/category" component={ CategoryPage } />
 
             <Route path="/contact">
-              Contact information
+              <ContactPage
+                title="Our location in Belgrade"
+                address="Danijelova 32, 11010 Beograd, Srbija"
+                phone="+381 11 30 94 094" />
             </Route>
 
             <Route path="/profile">
