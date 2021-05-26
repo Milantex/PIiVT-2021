@@ -7,10 +7,6 @@ class ContactPageProperies extends BasePageProperties {
 }
 
 export default class ContactPage extends BasePage<ContactPageProperies> {
-    constructor(props: ContactPageProperies) {
-        super(props);
-    }
-
     renderMain() {
         return (
             <div>

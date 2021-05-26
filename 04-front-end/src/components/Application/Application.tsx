@@ -21,7 +21,12 @@ export default function Application(props: any) {
           <Switch>
             <Route exact path="/" component={ HomePage } />
 
-            <Route path="/category/:cid?" component={ CategoryPage } />
+            <Route path="/category/:cid?"
+                   render={
+                     (props: any) => {
+                       return ( <CategoryPage {...props} /> );
+                     }
+                   } />
 
             <Route path="/contact">
               <ContactPage
