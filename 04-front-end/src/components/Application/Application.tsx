@@ -6,6 +6,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from '../HomePage/HomePage';
 import CategoryPage from '../CategoryPage/CategoryPage';
 import ContactPage from '../ContactPage/ContactPage';
+import UserLogin from '../UserLogin/UserLogin';
 
 export default function Application(props: any) {
   return (
@@ -38,6 +39,8 @@ export default function Application(props: any) {
             <Route path="/profile">
               My profile
             </Route>
+
+            <Route path="/user/login" component={UserLogin} />
           </Switch>
         </div>
 

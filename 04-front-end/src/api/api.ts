@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { AppConfiguration } from '../config/app.config';
+import EventRegister from './EventRegister';
 
 type ApiMethod = 'get' | 'post' | 'put' | 'delete';
 type ApiRole   = 'user' | 'administrator';
@@ -34,6 +35,8 @@ export default function api(
                 const newToken: string|null = await refreshToken(role);
 
                 if (newToken === null) {
+                    EventRegister.emit("AUTH_EVENT", "force_login");
+
                     return resolve({
                         status: 'login',
                         data: null,
@@ -45,6 +48,8 @@ export default function api(
                 api(method, path, role, body, false)
                     .then(res => resolve(res))
                     .catch(() => {
+                        EventRegister.emit("AUTH_EVENT", "force_login");
+
                         resolve({
                             status: 'login',
                             data: null,
@@ -55,6 +60,8 @@ export default function api(
             }
 
             if (err?.response?.status === 401) {
+                EventRegister.emit("AUTH_EVENT", "force_login");
+
                 return resolve({
                     status: 'login',
                     data: null,
@@ -62,6 +69,8 @@ export default function api(
             }
 
             if (err?.response?.status === 403) {
+                EventRegister.emit("AUTH_EVENT", "force_login");
+
                 return resolve({
                     status: 'login',
                     data: 'Wrong role',
@@ -70,7 +79,7 @@ export default function api(
 
             resolve({
                 status: 'error',
-                data: '' + err?.response,
+                data: err?.response,
             });
         });
     });
