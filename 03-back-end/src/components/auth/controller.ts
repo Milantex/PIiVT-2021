@@ -6,6 +6,7 @@ import ITokenData from './dto/ITokenData.interface';
 import * as jwt from "jsonwebtoken";
 import Config from '../../config/dev';
 import { IAdministratorLogin, IAdministratorLoginValidator } from './dto/IAdministratorLogin';
+import { IRefreshToken, IRefreshTokenValidator } from './dto/IRefreshToken';
 
 export default class AuthController extends BaseController {
     public async userLogin(req: Request, res: Response) {
@@ -122,5 +123,50 @@ export default class AuthController extends BaseController {
             authToken: authToken,
             refreshToken: refreshToken,
         });
+    }
+
+    async userRefresh(req: Request, res: Response) {
+        this.refreshTokenByRole("user")(req, res);
+    }
+
+    async administratorRefresh(req: Request, res: Response) {
+        this.refreshTokenByRole("administrator")(req, res);
+    }
+
+    private refreshTokenByRole(role: "user" | "administrator"): (req: Request, res: Response) => void {
+        return (req: Request, res: Response) => {
+            if (!IRefreshTokenValidator(req.body)) {
+                return res.status(400).send(IRefreshTokenValidator.errors);
+            }
+    
+            const tokenString: string = (req.body as IRefreshToken).refreshToken;
+    
+            try {
+                const existingData = jwt.verify(tokenString, Config.auth[role].auth.public) as ITokenData;
+    
+                const newTokenData: ITokenData = {
+                    id: existingData.id,
+                    identity: existingData.identity,
+                    role: existingData.role,
+                }
+
+                const authToken = jwt.sign(
+                    newTokenData,
+                    Config.auth[role].auth.private,
+                    {
+                        algorithm: Config.auth[role].algorithm,
+                        issuer: Config.auth[role].issuer,
+                        expiresIn: Config.auth[role].auth.duration,
+                    },
+                );
+    
+                res.send({
+                    authToken: authToken,
+                    refreshToken: null,
+                });
+            } catch (e) {
+                return res.status(400).send("Invalid refresh token: " + e?.message);
+            }
+        }
     }
 }

@@ -77,7 +77,7 @@ const Config: IConfig = {
             algorithm: "RS256",
             issuer: "localhost",
             auth: {
-                duration: 60 * 60 * 24 * 7, // Samo dok radimo razvoj: 60 * 60 * 5
+                duration: 60 * 2, // 60 * 60 * 24 * 7, // Samo dok radimo razvoj: 60 * 60 * 5
                 public: readFileSync("keystore/user-auth.public", "utf-8"),
                 private: readFileSync("keystore/user-auth.private", "utf-8"),
             },
@@ -101,7 +101,7 @@ const Config: IConfig = {
                 private: readFileSync("keystore/administrator-refresh.private", "utf-8"),
             },
         },
-        allowRequestsEvenWithoutValidTokens: true,
+        allowRequestsEvenWithoutValidTokens: false,
     },
 };
 
