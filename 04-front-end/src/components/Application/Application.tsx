@@ -12,6 +12,8 @@ import UserLogin from '../User/UserLogin';
 import UserLogout from '../User/UserLogout';
 import ArticlePage from '../Article/ArticlePage';
 import UserRegistration from '../User/UserRegistration';
+import AdministratorLogin from '../Administrator/AdministratorLogin';
+import AdministratorLogout from '../Administrator/AdministratorLogout';
 
 class ApplicationState {
   authorizedRole: "user" | "administrator" | "visitor" = "visitor";
@@ -42,7 +44,7 @@ export default class Application extends React.Component {
   private authEventHandler(message: string) {
     console.log('Application: authEventHandler: ', message);
 
-    if (message === "force_login" || message === "user_logout" || message === "admninistrator_logout") {
+    if (message === "force_login" || message === "user_logout" || message === "administrator_logout") {
       return this.setState({ authorizedRole: "visitor" });
     }
 
@@ -50,8 +52,8 @@ export default class Application extends React.Component {
       return this.setState({ authorizedRole: "user" });
     }
 
-    if (message === "admninistrator_login") {
-      return this.setState({ authorizedRole: "admninistrator" });
+    if (message === "administrator_login") {
+      return this.setState({ authorizedRole: "administrator" });
     }
   }
 
@@ -104,6 +106,9 @@ export default class Application extends React.Component {
               <Route path="/user/register" component={UserRegistration} />
               <Route path="/user/login" component={UserLogin} />
               <Route path="/user/logout" component={UserLogout} />
+
+              <Route path="/administrator/login" component={AdministratorLogin} />
+              <Route path="/administrator/logout" component={AdministratorLogout} />
             </Switch>
           </div>
   

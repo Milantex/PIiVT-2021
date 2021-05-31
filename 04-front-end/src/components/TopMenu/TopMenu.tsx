@@ -26,6 +26,10 @@ export default class TopMenu extends React.Component<TopMenuProperties> {
                     <Nav.Item>
                         <Link className="nav-link" to="/user/register">Register</Link>
                     </Nav.Item>
+
+                    <Nav.Item>
+                        <Link className="nav-link" to="/administrator/login">Administrator login</Link>
+                    </Nav.Item>
                 </Nav>
             );
         }
@@ -34,27 +38,27 @@ export default class TopMenu extends React.Component<TopMenuProperties> {
             return (
                 <Nav className="justify-content-center">
                     <Nav.Item>
-                        <Link className="nav-link" to="/">Home</Link>
+                        <Link className="nav-link" to="/dashboard/category">Categories</Link>
                     </Nav.Item>
 
                     <Nav.Item>
-                        <Link className="nav-link" to="/dashboard/category">Category management</Link>
+                        <Link className="nav-link" to="/dashboard/article">Articles</Link>
                     </Nav.Item>
 
                     <Nav.Item>
-                        <Link className="nav-link" to="/dashboard/article">Article management</Link>
+                        <Link className="nav-link" to="/dashboard/user">Users</Link>
                     </Nav.Item>
 
                     <Nav.Item>
-                        <Link className="nav-link" to="/dashboard/user">User management</Link>
+                        <Link className="nav-link" to="/dashboard/order">Orders</Link>
                     </Nav.Item>
 
                     <Nav.Item>
-                        <Link className="nav-link" to="/dashboard/order">Order management</Link>
+                        <Link className="nav-link" to="/dashboard/administrator">Administrators</Link>
                     </Nav.Item>
 
                     <Nav.Item>
-                        <Link className="nav-link" to="/administrator/logout">User login</Link>
+                        <Link className="nav-link" to="/administrator/logout">Logout</Link>
                     </Nav.Item>
                 </Nav>
             );
