@@ -649,6 +649,12 @@ class ArticleService extends BaseService<ArticleModel> {
                 })
         })
     }
+
+    public async getAllByCategoryId(categoryId: number): Promise<ArticleModel[]> {
+        return await this.getAllByFieldNameFromTable<ArticleModelAdapterOptions>("article", "category_id", categoryId, {
+            loadPhotos: true,
+        }) as ArticleModel[];
+    }
 }
 
 export default ArticleService;
