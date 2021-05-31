@@ -10,6 +10,7 @@ import EventRegister from '../../api/EventRegister';
 import api from '../../api/api';
 import UserLogin from '../UserLogin/UserLogin';
 import UserLogout from '../UserLogout/UserLogout';
+import ArticlePage from '../Article/ArticlePage';
 
 class ApplicationState {
   authorizedRole: "user" | "administrator" | "visitor" = "visitor";
@@ -86,6 +87,7 @@ export default class Application extends React.Component {
                          return ( <CategoryPage {...props} /> );
                        }
                      } />
+              <Route path="/article/:aid" component={ ArticlePage } />
   
               <Route path="/contact">
                 <ContactPage
