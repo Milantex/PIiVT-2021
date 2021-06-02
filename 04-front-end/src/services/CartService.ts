@@ -26,4 +26,16 @@ export default class CartService {
             EventRegister.emit("CART_EVENT", "cart.add", articleId, quantity);
         });
     }
+
+    public static setToCart(articleId: number, newQuantity: number) {
+        api("put", "/cart", "user", {
+            articleId: articleId,
+            quantity: newQuantity
+        })
+        .then(res => {
+            if (res.status !== "ok") return;
+            if (res.data.errorCode !== undefined) return;
+            EventRegister.emit("CART_EVENT", "cart.update", articleId, newQuantity);
+        });
+    }
 }
