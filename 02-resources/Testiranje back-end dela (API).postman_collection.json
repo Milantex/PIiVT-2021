@@ -78,6 +78,65 @@
 							],
 							"cookie": [],
 							"body": "[\n    {\n        \"categoryId\": 1,\n        \"name\": \"Category A\",\n        \"imagePath\": \"static/categories/1.png\",\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subcategories\": []\n    },\n    {\n        \"categoryId\": 2,\n        \"name\": \"Category B\",\n        \"imagePath\": \"static/categories/2.png\",\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subcategories\": []\n    }\n]"
+						},
+						{
+							"name": "GET all categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1603"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"643-b86+VTEtWXHvL+Zwq9xyFDZuUrs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 14:01:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subcategories\": [\n            {\n                \"parentCategoryId\": 1,\n                \"parentCategory\": null,\n                \"subcategories\": [],\n                \"features\": [],\n                \"categoryId\": 3,\n                \"name\": \"Matične poloče\",\n                \"imagePath\": \"/static/categories/mb.jpg\"\n            },\n            {\n                \"parentCategoryId\": 1,\n                \"parentCategory\": null,\n                \"subcategories\": [\n                    {\n                        \"parentCategoryId\": 4,\n                        \"parentCategory\": null,\n                        \"subcategories\": [],\n                        \"features\": [],\n                        \"categoryId\": 5,\n                        \"name\": \"Magnetni diskovi\",\n                        \"imagePath\": \"/static/categories/hdd-classic.png\"\n                    },\n                    {\n                        \"parentCategoryId\": 4,\n                        \"parentCategory\": null,\n                        \"subcategories\": [],\n                        \"features\": [],\n                        \"categoryId\": 6,\n                        \"name\": \"SSD diskovi\",\n                        \"imagePath\": \"/static/categories/hdd-ssd.png\"\n                    },\n                    {\n                        \"parentCategoryId\": 4,\n                        \"parentCategory\": null,\n                        \"subcategories\": [],\n                        \"features\": [],\n                        \"categoryId\": 7,\n                        \"name\": \"M2 diskovi\",\n                        \"imagePath\": \"/static/categories/hdd-m2.png\"\n                    }\n                ],\n                \"features\": [],\n                \"categoryId\": 4,\n                \"name\": \"Hard diskovi\",\n                \"imagePath\": \"/static/categories/hdd.jpg\"\n            }\n        ],\n        \"features\": [],\n        \"categoryId\": 1,\n        \"name\": \"Računarske komponente\",\n        \"imagePath\": \"/static/categories/pc.png\"\n    },\n    {\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subcategories\": [\n            {\n                \"parentCategoryId\": 2,\n                \"parentCategory\": null,\n                \"subcategories\": [],\n                \"features\": [],\n                \"categoryId\": 8,\n                \"name\": \"Aplikacije\",\n                \"imagePath\": \"/static/categories/apps.png\"\n            },\n            {\n                \"parentCategoryId\": 2,\n                \"parentCategory\": null,\n                \"subcategories\": [],\n                \"features\": [],\n                \"categoryId\": 9,\n                \"name\": \"Video igre\",\n                \"imagePath\": \"/static/categories/games.png\"\n            },\n            {\n                \"parentCategoryId\": 2,\n                \"parentCategory\": null,\n                \"subcategories\": [],\n                \"features\": [],\n                \"categoryId\": 10,\n                \"name\": \"Operativni sistemi\",\n                \"imagePath\": \"/static/categories/os.png\"\n            }\n        ],\n        \"features\": [],\n        \"categoryId\": 2,\n        \"name\": \"Računarski softver\",\n        \"imagePath\": \"/static/categories/cd.png\"\n    }\n]"
 						}
 					]
 				},
@@ -2184,6 +2243,117 @@
 							"body": "Not Found"
 						}
 					]
+				},
+				{
+					"name": "GET all articles in a category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/category/3/article",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category",
+								"3",
+								"article"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all articles in a category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/3/article",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"3",
+										"article"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1716"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6b4-8Qr5mbNsdFZ00zaPCyq2SqP5YKQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 May 2021 11:15:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"prices\": [],\n        \"photos\": [\n            {\n                \"photoId\": 25,\n                \"imagePath\": \"static/uploads/2021/05/b1de3f1f-b70f-46cc-a566-023fa7dc3d56-alexandre-debieve-FO7JIlwjOtU-unsplash.jpg\"\n            },\n            {\n                \"photoId\": 26,\n                \"imagePath\": \"static/uploads/2021/05/cb1727af-365f-4b33-b81a-ef03cfe57cc4-cooler-933691_1280.jpg\"\n            },\n            {\n                \"photoId\": 27,\n                \"imagePath\": \"static/uploads/2021/05/16e50e93-9e11-4c55-b196-d3a08de20bc4-cyber-2377718_1280.jpg\"\n            }\n        ],\n        \"features\": [],\n        \"articleId\": 17,\n        \"title\": \"MB 111\",\n        \"excerpt\": \"Ovo je kratak opis mp...\",\n        \"description\": \"Ovo je detaljan opis mp...   \",\n        \"isActive\": true,\n        \"isPromoted\": true,\n        \"createdAt\": \"2021-05-19T16:11:36.000Z\",\n        \"categoryId\": 3,\n        \"currentPrice\": 39.9\n    },\n    {\n        \"prices\": [],\n        \"photos\": [\n            {\n                \"photoId\": 32,\n                \"imagePath\": \"static/uploads/2021/05/cedefbf4-3bd3-41e9-8647-bfb2bc369f45-mb001.jpg\"\n            }\n        ],\n        \"features\": [],\n        \"articleId\": 18,\n        \"title\": \"MB 11232\",\n        \"excerpt\": \"Ovo je kratak opis mp...\",\n        \"description\": \"Ovo je detaljan opis mp...   \",\n        \"isActive\": true,\n        \"isPromoted\": true,\n        \"createdAt\": \"2021-05-28T11:56:35.000Z\",\n        \"categoryId\": 3,\n        \"currentPrice\": 49.9\n    },\n    {\n        \"prices\": [],\n        \"photos\": [\n            {\n                \"photoId\": 33,\n                \"imagePath\": \"static/uploads/2021/05/adcd2e13-500e-44de-8212-b5758dbe5b5f-mb002.png\"\n            }\n        ],\n        \"features\": [],\n        \"articleId\": 19,\n        \"title\": \"MB 536346\",\n        \"excerpt\": \"Ovo je kratak opis mp...\",\n        \"description\": \"Ovo je detaljan opis mp...   \",\n        \"isActive\": true,\n        \"isPromoted\": true,\n        \"createdAt\": \"2021-05-28T11:57:09.000Z\",\n        \"categoryId\": 3,\n        \"currentPrice\": 19.91\n    },\n    {\n        \"prices\": [],\n        \"photos\": [\n            {\n                \"photoId\": 34,\n                \"imagePath\": \"static/uploads/2021/05/810e2d4b-fccf-43d9-bc5e-8efdd21ed943-mb003j.peg\"\n            }\n        ],\n        \"features\": [],\n        \"articleId\": 20,\n        \"title\": \"MB 54rggrgdf\",\n        \"excerpt\": \"Ovo je kratak opis mp...\",\n        \"description\": \"Ovo je detaljan opis mp...   \",\n        \"isActive\": true,\n        \"isPromoted\": true,\n        \"createdAt\": \"2021-05-28T11:57:31.000Z\",\n        \"categoryId\": 3,\n        \"currentPrice\": 99.99\n    }\n]"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{API_USER_AUTH_TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
@@ -3313,7 +3483,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"mtair@singidunum.ac.rs\",\r\n    \"password\": \"test123456\",\r\n    \"forename\": \"Milan\",\r\n    \"surname\": \"Tair\",\r\n    \"phoneNumber\": \"+381113093267\",\r\n    \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\"\r\n}",
+							"raw": "{\r\n    \"email\": \"pperic@example.com\",\r\n    \"password\": \"test123456\",\r\n    \"forename\": \"Pera\",\r\n    \"surname\": \"Peric\",\r\n    \"phoneNumber\": \"+381113093263\",\r\n    \"postalAddress\": \"Danijelova 32, 11010 beograd, R. Srbija\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3632,6 +3802,336 @@
 									],
 									"cookie": [],
 									"body": "User account inactive."
+								}
+							]
+						},
+						{
+							"name": "POST a new token refresh request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWRlbnRpdHkiOiJtdGFpckBzaW5naWR1bnVtLmFjLnJzIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MjIyMDM0OTIsImV4cCI6MTY1MzczOTQ5MiwiaXNzIjoibG9jYWxob3N0In0.CKaTk0_EXJfMVafYaJNsEwdtsnt6QwhM0a0-xWG8Ss97HoMjU_Nacf1d2RFUcoGzQH0PTecL2w6-WF7l8XkGhQxxgIFJkp4KNVzhkXO76pwFC6JJCiPg_dr09Gz7hfdVvm7nn7WBUp1MlaWzwbLc9xrOadhKIaID87LOo_IdLvhbogEkx0eCHPsCJvDwg8wCXluVnbLhAotows3Fxq5mx2mhtYuSJNkEm-L9_tu9ceY3GHoOEwqFGORRpIME8asng4gKAU5MB8mlhgZO74lLE9Gb88DhrNAqI1HaJtJw1fdfhTGwjF1gP1QG1vmlgqggU5w66PxzbRgGGueu357znA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/user/refresh",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"user",
+										"refresh"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST a new token refresh request - no refresh token",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"refreshToken\": \"\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/user/refresh",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"refresh"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "43"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2b-xnXyNLUHmOEF64WAWgWQDNhZTi4\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 28 May 2021 12:01:26 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "Invalid refresh token: jwt must be provided"
+								},
+								{
+									"name": "POST a new token refresh request - with bad token",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"refreshToken\": \"123\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/user/refresh",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"refresh"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "36"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"24-Cv7RxFtqE6HLKrPqagpaeWKpU2Q\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 28 May 2021 12:01:39 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "Invalid refresh token: jwt malformed"
+								},
+								{
+									"name": "POST a new token refresh request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWRlbnRpdHkiOiJtdGFpckBzaW5naWR1bnVtLmFjLnJzIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MjIyMDM0OTIsImV4cCI6MTY1MzczOTQ5MiwiaXNzIjoibG9jYWxob3N0In0.CKaTk0_EXJfMVafYaJNsEwdtsnt6QwhM0a0-xWG8Ss97HoMjU_Nacf1d2RFUcoGzQH0PTecL2w6-WF7l8XkGhQxxgIFJkp4KNVzhkXO76pwFC6JJCiPg_dr09Gz7hfdVvm7nn7WBUp1MlaWzwbLc9xrOadhKIaID87LOo_IdLvhbogEkx0eCHPsCJvDwg8wCXluVnbLhAotows3Fxq5mx2mhtYuSJNkEm-L9_tu9ceY3GHoOEwqFGORRpIME8asng4gKAU5MB8mlhgZO74lLE9Gb88DhrNAqI1HaJtJw1fdfhTGwjF1gP1QG1vmlgqggU5w66PxzbRgGGueu357znA\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/user/refresh",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"refresh"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "563"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"233-tHMMDIxFYR2pEXYhlwVxjXLR5Og\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 28 May 2021 12:05:20 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"authToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWRlbnRpdHkiOiJtdGFpckBzaW5naWR1bnVtLmFjLnJzIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MjIyMDM1MjAsImV4cCI6MTYyMjIwMzY0MCwiaXNzIjoibG9jYWxob3N0In0.NQIMHVGfeT61E0nW52sq5qgzBaA8hPuC0Jqba_v7Ftt4V8cAtGVOFIOQzpashLiEe2CAYpTc9ImHQ2ajO7rPuRMO_Cm6uhxhvrdyfOEfHgB4fApL7zxoTPRTBJZwx4PLqS1pLc09oTqlgI4Xdj7cEqG2ToHrnN62vgthw4bCubXwyi8VFg8umkMriycoCFyefMEvGkRhrSaXvikwue2qPICiUWXSrLERCpSTZTwSPlfAhM7bdVs8yO0R1Xrp9bGGfAGhYkU2RNM_w_CRItIY2YDD4Hz-NgLolVSpdfHDRN4GdFFY4-kbtQiY8AnLNb0I3Ok460ELli60ed0bhDD_9g\",\n    \"refreshToken\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "GET an OK message",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{API_USER_AUTH_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/auth/user/ok",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"user",
+										"ok"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "GET an OK message",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{API_URL}}/auth/user/ok",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"ok"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "2"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2-nOO9QiTIwXgNtWtBJezz8kv3SLc\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 28 May 2021 15:07:17 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "OK"
 								}
 							]
 						}
