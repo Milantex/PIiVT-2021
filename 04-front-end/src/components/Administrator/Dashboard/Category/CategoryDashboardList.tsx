@@ -54,6 +54,12 @@ export default class CategoryDashboardList extends BasePage<{}> {
     }
 
     private renderCategoryGroup(categories: CategoryModel[]): JSX.Element {
+        if (!Array.isArray(categories)) {
+            return (
+                <></>
+            );
+        }
+
         return (
             <ul>
                 {
