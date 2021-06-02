@@ -53,7 +53,7 @@ export default class CartLink extends React.Component {
 
     render() {
         return (
-            <Nav.Link>
+            <Nav.Link as="div">
                 <Link to="/cart" className="cart-link">
                     &#128722; Cart ({ this.state.count })
                     {
