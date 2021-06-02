@@ -16,6 +16,8 @@ class FeatureDashboardListProperties extends BasePageProperties {
 interface FeatureDashboardListState {
     category: CategoryModel|null;
     featureMessages: Map<number, string>;
+    newFeatureName: string;
+    newFeatureMessage: string;
 }
 
 export default class FeatureDashboardList extends BasePage<FeatureDashboardListProperties> {
@@ -27,6 +29,8 @@ export default class FeatureDashboardList extends BasePage<FeatureDashboardListP
         this.state = {
             category: null,
             featureMessages: new Map(),
+            newFeatureName: "",
+            newFeatureMessage: "",
         }
     }
 
@@ -130,6 +134,32 @@ export default class FeatureDashboardList extends BasePage<FeatureDashboardListP
         };
     }
 
+    private onChangeInput(field: "newFeatureName"): (event: React.ChangeEvent<HTMLInputElement>) => void {
+        return (event: React.ChangeEvent<HTMLInputElement>) => {
+            this.setState({
+                [field]: event.target.value,
+            });
+        }
+    }
+
+    private addButtonClickhandler() {
+        FeatureService.addFeature(
+            this.state.newFeatureName,
+            this.getCurrentCategoryId()
+        )
+        .then(res => {
+            if (res) {
+                this.setState({ newFeatureName: "" });
+                this.loadCategoryData();
+                return;
+            }
+
+            this.setState({ newFeatureMessage: "Could not save new feature." });
+
+            setTimeout(() => this.setState({ newFeatureMessage: "" }), 3000);
+        });
+    }
+
     renderMain(): JSX.Element {
         if (this.state.category === null) {
             return (
@@ -182,14 +212,14 @@ export default class FeatureDashboardList extends BasePage<FeatureDashboardListP
                     <tfoot>
                         <tr>
                             <td>
-                                <Form.Control type="text" size="sm" value="" onChange={ () => {} } />
+                                <Form.Control type="text" size="sm"
+                                    value={ this.state.newFeatureName }
+                                    onChange={ this.onChangeInput("newFeatureName") } />
                             </td>
-                            <td>
-                                ...
-                            </td>
+                            <td>{ this.state.newFeatureMessage }</td>
                             <td>
                                 <Button variant="primary" size="sm"
-                                        onClick={ () => {} }>
+                                        onClick={ () => this.addButtonClickhandler() }>
                                     Add new
                                 </Button>
                             </td>
