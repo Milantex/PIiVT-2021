@@ -9,9 +9,9 @@ import * as fs from "fs";
 import Config from '../../config/dev';
 import * as path from 'path';
 
-class ArticleModelAdapterOptions implements IModelAdapterOptionsInterface {
+export class ArticleModelAdapterOptions implements IModelAdapterOptionsInterface {
     loadCategory: boolean = false;
-    loadPrices: boolean = false;
+    loadPrices: boolean = true;
     loadFeatures: boolean = false;
     loadPhotos: boolean = false;
 }

@@ -5,11 +5,19 @@ import UserModel from '../user/model';
 import ArticleModel from '../article/model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IOrderStatus } from './dto/IOrderStatus';
+import { ArticleModelAdapterOptions } from '../article/service';
 
-class CartModelAdapterOptions implements IModelAdapterOptionsInterface {
+export class CartModelAdapterOptions implements IModelAdapterOptionsInterface {
     loadUser: boolean = false;
     loadArticles: boolean = false;
     loadOrder: boolean = false;
+
+    articleModelAdapterOptions: ArticleModelAdapterOptions = {
+        loadCategory: true,
+        loadPrices: true,
+        loadFeatures: true,
+        loadPhotos: true,
+    };
 }
 
 export default class CartService extends BaseService<CartModel> {
@@ -32,7 +40,7 @@ export default class CartService extends BaseService<CartModel> {
         }
 
         if (options.loadArticles) {
-            item.articles = await this.getAllCartArticlesByCartId(item.cartId);
+            item.articles = await this.getAllCartArticlesByCartId(item.cartId, options.articleModelAdapterOptions);
         }
 
         return item;
@@ -57,7 +65,7 @@ export default class CartService extends BaseService<CartModel> {
         }
     }
 
-    private async getAllCartArticlesByCartId(cartId: number): Promise<CartArticleModel[]> {
+    private async getAllCartArticlesByCartId(cartId: number, articleModelAdapterOptions: ArticleModelAdapterOptions): Promise<CartArticleModel[]> {
         const [ rows ] = await this.db.execute(
             `SELECT * FROM cart_article WHERE cart_id = ?;`,
             [ cartId, ]
@@ -78,10 +86,7 @@ export default class CartService extends BaseService<CartModel> {
                 cartArticleId: +(data?.cart_article_id),
                 articleId: articleId,
                 quantity: +(data?.quantity),
-                article: await this.services.articleService.getById(articleId, {
-                    loadCategory: true,
-                    loadPhotos: true,
-                }) as ArticleModel,
+                article: await this.services.articleService.getById(articleId, articleModelAdapterOptions) as ArticleModel,
             });
         }
 
@@ -319,6 +324,12 @@ export default class CartService extends BaseService<CartModel> {
                 loadArticles: true,
                 loadOrder: true,
                 loadUser: true,
+                articleModelAdapterOptions: {
+                    loadCategory: true,
+                    loadFeatures: true,
+                    loadPhotos: true,
+                    loadPrices: true,
+                }
             }));
         }
 

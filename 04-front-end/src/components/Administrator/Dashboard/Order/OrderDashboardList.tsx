@@ -36,7 +36,15 @@ export default class OrderDashboardList extends BasePage<{}> {
         return date.toLocaleDateString() + " " + date.toLocaleTimeString();
     }
 
-    private getPriceBefore(prices: ArticlePrice[], date: string): number {
+    private getPriceBefore(prices: ArticlePrice[], date: string, currentPrice: number = 0): number {
+        if (prices === undefined) {
+            return currentPrice;
+        }
+
+        if (prices.length === 0) {
+            return currentPrice;
+        }
+
         let p = prices[0].price;
 
         const orderDate = new Date(date).getTime();
@@ -74,8 +82,7 @@ export default class OrderDashboardList extends BasePage<{}> {
                                 <td>{ cart.order?.orderId }</td>
                                 <td>{ this.getLocalDate(cart.order?.createdAt + "") }</td>
                                 <td>&euro; { cart.articles
-                                          // .map(ca => ca.quantity * this.getPriceBefore(ca.article.prices, cart.order?.createdAt + ""))
-                                          .map(ca => ca.quantity * ca.article.currentPrice)
+                                          .map(ca => ca.quantity * this.getPriceBefore(ca.article.prices, cart.order?.createdAt + "", ca.article.currentPrice))
                                           .reduce((sum, v) => sum + v, 0)
                                           .toFixed(2) }</td>
                                 <td>{ cart.user.email }</td>
