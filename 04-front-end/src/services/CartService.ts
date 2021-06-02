@@ -51,4 +51,16 @@ export default class CartService {
             EventRegister.emit("CART_EVENT", "cart.update");
         });
     }
+
+    public static getAllOrders(): Promise<CartModel[]> {
+        return new Promise<CartModel[]>(resolve => {
+            api("get", "/order", "administrator")
+            .then(res => {
+                if (res.status !== "ok") {
+                    return resolve([]);
+                }
+                resolve(res.data);
+            })
+        });
+    }
 }
