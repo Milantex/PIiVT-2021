@@ -1,6 +1,7 @@
 import React from 'react';
 import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import CartLink from '../Cart/CartLink';
 
 class TopMenuProperties {
     currentMenuType: "user" | "administrator" | "visitor" = "visitor";
@@ -82,6 +83,8 @@ export default class TopMenu extends React.Component<TopMenuProperties> {
                     <Nav.Item>
                         <Link className="nav-link" to="/profile">My Account</Link>
                     </Nav.Item>
+
+                    <CartLink />
 
                     <Nav.Item>
                         <Link className="nav-link" to="/user/logout">Logout</Link>

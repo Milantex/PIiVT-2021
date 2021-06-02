@@ -5,7 +5,7 @@ export default class UserModel implements IModel {
     createdAt: Date;
     email: string;
     passwordHash: string;
-    passwordResetCode?: string = null;
+    passwordResetCode?: string|null = null;
     forename: string;
     surname: string;
     phoneNumber: string;

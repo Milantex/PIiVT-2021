@@ -2,10 +2,11 @@ import { Link } from 'react-router-dom';
 import ArticleModel from '../../../../03-back-end/src/components/article/model';
 import ArticleService from '../../services/ArticleService';
 import BasePage, { BasePageProperties } from '../BasePage/BasePage';
-import { Row, Col, Card } from 'react-bootstrap';
+import { Row, Col, Card, InputGroup, Form, Button } from 'react-bootstrap';
 import * as path from "path";
 import { AppConfiguration } from "../../config/app.config";
 import "./ArticlePage.sass";
+import CartService from '../../services/CartService';
 
 class ArticlePageProperties extends BasePageProperties {
     match?: {
@@ -15,8 +16,9 @@ class ArticlePageProperties extends BasePageProperties {
     }
 }
 
-class ArticlePageState {
-    data: ArticleModel|null = null;
+interface ArticlePageState {
+    data: ArticleModel|null;
+    quantity: string;
 }
 
 export default class ArticlePage extends BasePage<ArticlePageProperties> {
@@ -27,6 +29,7 @@ export default class ArticlePage extends BasePage<ArticlePageProperties> {
 
         this.state = {
             data: null,
+            quantity: "1",
         }
     }
 
@@ -60,6 +63,18 @@ export default class ArticlePage extends BasePage<ArticlePageProperties> {
         return directory + "/" + filename + "-thumb" + extension;
     }
 
+    private onChangeInput(field: "quantity"): (event: React.ChangeEvent<HTMLInputElement>) => void {
+        return (event: React.ChangeEvent<HTMLInputElement>) => {
+            this.setState({
+                [field]: event.target.value,
+            });
+        }
+    }
+
+    private addToCart() {
+        CartService.addToCart(this.getArticleId(), Number(this.state.quantity));
+    }
+
     renderMain(): JSX.Element {
         if (this.state.data === null) {
             return (
@@ -81,7 +96,7 @@ export default class ArticlePage extends BasePage<ArticlePageProperties> {
                 </h1>
 
                 <Row>
-                    <Col xs={ 12 } md={ 8 }>
+                    <Col xs={ 12 } md={ 7 }>
                         <Card className="mb-3">
                             <Row>
                                 {
@@ -115,8 +130,37 @@ export default class ArticlePage extends BasePage<ArticlePageProperties> {
                         </Card>
                     </Col>
 
-                    <Col xs={ 12 } md={ 4 }>
+                    <Col xs={ 12 } md={ 5 }>
                         <Card>
+                            <Card.Body>
+                                <Card.Title>
+                                    <b>Add to cart</b>
+                                </Card.Title>
+                                <Card.Text as="div">
+                                    <InputGroup>
+                                        <InputGroup.Prepend>
+                                            <InputGroup.Text>Quantity:</InputGroup.Text>
+                                        </InputGroup.Prepend>
+                                        <Form.Control
+                                            type="number"
+                                            min="1"
+                                            max="100"
+                                            step="1"
+                                            value={ this.state.quantity }
+                                            onChange={ this.onChangeInput("quantity") } />
+                                        <InputGroup.Append>
+                                            <Button
+                                                variant="primary"
+                                                onClick={ () => this.addToCart() }>
+                                                Add
+                                            </Button>
+                                        </InputGroup.Append>
+                                    </InputGroup>
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+
+                        <Card className="mt-3">
                             <Card.Body>
                                 <Card.Title>
                                     <b>Features</b> (list style)
