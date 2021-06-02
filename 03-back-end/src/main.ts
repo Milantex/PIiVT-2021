@@ -5,7 +5,7 @@ import CategoryRouter from './components/category/router';
 import * as mysql2 from "mysql2/promise";
 import IApplicationResources from './common/IApplicationResources.interface';
 import Router from './router';
-import FeatureRouter from './components/feature/reouter';
+import FeatureRouter from './components/feature/router';
 import CategoryService from './components/category/service';
 import FeatureService from './components/feature/service';
 import ArticleService from './components/article/service';
