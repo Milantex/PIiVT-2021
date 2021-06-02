@@ -1,9 +1,37 @@
-.fature-list-table
-    tr
-        th
-            &:nth-child(2)
-                width: 250px
+.react-confirm-alert-body-element
+    overflow: hidden
 
-            &:nth-child(3)
-                width: 130px
-                
+    #react-confirm-alert-firm-svg
+        display: none
+        
+    #react-confirm-alert
+        position: absolute
+        top: 0px
+        left: 0px
+        right: 0px
+        bottom: 0px
+        z-index: 100
+        background-color: #ffffff
+        text-align: center
+        display: flex
+        place-items: center
+
+        .react-confirm-alert-overlay
+            width: 100%
+
+            .react-confirm-alert-button-group
+                margin-top: 10px
+
+                button
+                    padding: 5px 50px
+                    margin: 0px 10px
+
+    .fature-list-table
+        tr
+            th
+                &:nth-child(2)
+                    width: 250px
+
+                &:nth-child(3)
+                    width: 130px
+                    
