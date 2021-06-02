@@ -75,6 +75,14 @@ class FeatureController extends BaseController {
             loadCategory: true,
         }));
     }
+
+    public async delete(req: Request, res: Response) {
+        const featureId = +(req.params.id);
+        if (featureId <= 0) return res.sendStatus(400);
+        const result = await this.services.featureService.getById(featureId);
+        if (result === null) return res.sendStatus(404);
+        res.send(await this.services.featureService.deleteById(featureId));
+    }
 }
 
 export default FeatureController;

@@ -97,6 +97,25 @@ class FeatureService extends BaseService<FeatureModel> {
                 })
         });
     }
+
+    public async deleteById(featureId: number): Promise<IErrorResponse> {
+        return new Promise<IErrorResponse>(async resolve => {
+            const sql = "DELETE FROM feature WHERE feature_id = ?;";
+            this.db.execute(sql, [ featureId ])
+                .then(() => {
+                    resolve({
+                        errorCode: 0,
+                        errorMessage: "Deleted.",
+                    });
+                })
+                .catch(error => {
+                    resolve({
+                        errorCode: error?.errno,
+                        errorMessage: error?.sqlMessage
+                    });
+                });
+        });
+    }
 }
 
 export default FeatureService;

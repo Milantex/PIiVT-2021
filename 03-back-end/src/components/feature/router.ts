@@ -11,5 +11,6 @@ export default class FeatureRouter implements IRouter {
         application.get("/category/:cid/feature", featureController.getAllInCategory.bind(featureController));
         application.post("/feature",              featureController.add.bind(featureController));
         application.put("/feature/:id",           featureController.edit.bind(featureController));
+        application.delete("/feature/:id",        featureController.delete.bind(featureController));
     }
 }
