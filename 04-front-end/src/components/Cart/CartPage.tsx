@@ -10,9 +10,14 @@ import ConfirmAction from '../Misc/ConfirmAction';
 
 interface CartPageState {
     cart: CartModel|null;
+
     showDeleteDialog: boolean;
     deleteDialogYesHandler: () => void;
     deleteDialogNoHandler: () => void;
+
+    showMakeOrderDialog: boolean;
+    makeOrderDialogYesHandler: () => void;
+    makeOrderDialogNoHandler: () => void;
 }
 
 export default class CartPage extends BasePage<{}> {
@@ -23,11 +28,20 @@ export default class CartPage extends BasePage<{}> {
         
         this.state = {
             cart: null,
+
             showDeleteDialog: false,
             deleteDialogYesHandler: () => {},
             deleteDialogNoHandler: () => {
                 this.setState({
                     showDeleteDialog: false,
+                })
+            },
+
+            showMakeOrderDialog: false,
+            makeOrderDialogYesHandler: () => {},
+            makeOrderDialogNoHandler: () => {
+                this.setState({
+                    showMakeOrderDialog: false,
                 })
             },
         };
@@ -117,8 +131,21 @@ export default class CartPage extends BasePage<{}> {
         };
     }
 
+    private makeOrderHandler() {
+        if (this.state.cart === null) return;
+        if (this.state.cart.articles.length === 0) return;
+
+        this.setState({
+            showMakeOrderDialog: true,
+            makeOrderDialogYesHandler: () => {
+                CartService.makeOrder();
+                this.setState({ showMakeOrderDialog: false, });
+            }
+        });
+    }
+
     renderMain(): JSX.Element {
-        if (this.state.cart === null) {
+        if (this.state.cart === null || this.state.cart.articles.length === 0) {
             return (
                 <Card>
                     <Card.Header>
@@ -139,9 +166,19 @@ export default class CartPage extends BasePage<{}> {
                     this.state.showDeleteDialog ? (
                         <ConfirmAction
                             title="Remove from cart?"
-                            message="Are you sure you want to remove this article from the cart?"
+                            message="Are you sure that you want to remove this article from the cart?"
                             yesHandler={ this.state.deleteDialogYesHandler }
                             noHandler={ this.state.deleteDialogNoHandler } />
+                    ): ""
+                }
+
+                {
+                    this.state.showMakeOrderDialog ? (
+                        <ConfirmAction
+                            title="Confirm sending order"
+                            message="Are you sure that you want to make this order?"
+                            yesHandler={ this.state.makeOrderDialogYesHandler }
+                            noHandler={ this.state.makeOrderDialogNoHandler } />
                     ): ""
                 }
 
@@ -219,7 +256,16 @@ export default class CartPage extends BasePage<{}> {
                                                 .toFixed(2)
                                         }
                                     </td>
-                                    <td></td>
+                                    <td>
+                                        {
+                                            this.state.cart.articles.length > 0 ? (
+                                                <Button variant="primary" size="sm"
+                                                    onClick={ () => this.makeOrderHandler() }>
+                                                    Make order
+                                                </Button>
+                                            ): ""
+                                        }
+                                    </td>
                                 </tr>
                             </tfoot>
                         </table>

@@ -38,4 +38,17 @@ export default class CartService {
             EventRegister.emit("CART_EVENT", "cart.update", articleId, newQuantity);
         });
     }
+
+    public static makeOrder() {
+        api("post", "/cart/order", "user")
+        .then(res => {
+            if (res.status !== "ok") {
+                EventRegister.emit("ORDER_EVENT", "order.failed", res.data);
+            } else {
+                EventRegister.emit("ORDER_EVENT", "order.success", res.data);
+            }
+
+            EventRegister.emit("CART_EVENT", "cart.update");
+        });
+    }
 }
