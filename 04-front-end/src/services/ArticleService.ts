@@ -1,4 +1,4 @@
-import ArticleModel from '../../../03-back-end/src/components/article/model';
+import ArticleModel, { ArticlePrice } from '../../../03-back-end/src/components/article/model';
 import api from '../api/api';
 import EventRegister from '../api/EventRegister';
 import * as path from "path";
@@ -46,5 +46,31 @@ export default class ArticleService {
         const extension = path.extname(url);
         const filename  = path.basename(url, extension);
         return directory + "/" + filename + "-small" + extension;
+    }
+
+    public static getPriceBefore(article: ArticleModel, date: string): number {
+        const prices: ArticlePrice[] = article.prices;
+
+        if (prices === undefined) {
+            return article.currentPrice;
+        }
+
+        if (prices.length === 0) {
+            return article.currentPrice;
+        }
+
+        let p = prices[0].price;
+
+        const orderDate = new Date(date).getTime();
+
+        for (let price of prices) {
+            if (new Date(price.createdAt + "").getTime() <= orderDate) {
+                p = price.price;
+            } else {
+                break;
+            }
+        }
+
+        return p;
     }
 }

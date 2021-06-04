@@ -1,13 +1,15 @@
 import { Button, Form, InputGroup } from 'react-bootstrap';
-import { ArticlePrice } from '../../../../../../03-back-end/src/components/article/model';
 import CartModel, { OrderStatus } from '../../../../../../03-back-end/src/components/cart/model';
 import EventRegister from '../../../../api/EventRegister';
+import ArticleService from '../../../../services/ArticleService';
 import CartService from '../../../../services/CartService';
 import BasePage from '../../../BasePage/BasePage';
+import CartPreview from './CartPreview';
 
 interface OrderDashboardListState {
     carts: CartModel[];
     cartStatusSaveButtonEnabled: Map<number, boolean>;
+    displayedCart: CartModel | null;
 }
 
 export default class OrderDashboardList extends BasePage<{}> {
@@ -19,6 +21,7 @@ export default class OrderDashboardList extends BasePage<{}> {
         this.state = {
             carts: [],
             cartStatusSaveButtonEnabled: new Map(),
+            displayedCart: null,
         };
     }
 
@@ -51,30 +54,6 @@ export default class OrderDashboardList extends BasePage<{}> {
     private getLocalDate(isoDate: string): string {
         const date = new Date(isoDate);
         return date.toLocaleDateString() + " " + date.toLocaleTimeString();
-    }
-
-    private getPriceBefore(prices: ArticlePrice[], date: string, currentPrice: number = 0): number {
-        if (prices === undefined) {
-            return currentPrice;
-        }
-
-        if (prices.length === 0) {
-            return currentPrice;
-        }
-
-        let p = prices[0].price;
-
-        const orderDate = new Date(date).getTime();
-
-        for (let price of prices) {
-            if (new Date(price.createdAt + "").getTime() <= orderDate) {
-                p = price.price;
-            } else {
-                break;
-            }
-        }
-
-        return p;
     }
 
     private getChangeOrderStatusHandler(cartId: number): (event: React.ChangeEvent<HTMLSelectElement>) => void {
@@ -122,7 +101,7 @@ export default class OrderDashboardList extends BasePage<{}> {
                                 <td>{ cart.order?.orderId }</td>
                                 <td>{ this.getLocalDate(cart.order?.createdAt + "") }</td>
                                 <td>&euro; { cart.articles
-                                          .map(ca => ca.quantity * this.getPriceBefore(ca.article.prices, cart.order?.createdAt + "", ca.article.currentPrice))
+                                          .map(ca => ca.quantity * ArticleService.getPriceBefore(ca.article, cart.order?.createdAt + ""))
                                           .reduce((sum, v) => sum + v, 0)
                                           .toFixed(2) }</td>
                                 <td>{ cart.user.email }</td>
@@ -147,11 +126,26 @@ export default class OrderDashboardList extends BasePage<{}> {
                                         </InputGroup.Append>
                                     </InputGroup>
                                 </td>
-                                <td>...</td>
+                                <td>
+                                    <Button
+                                        variant="primary"
+                                        onClick={ () => this.setState({ displayedCart: cart }) }>
+                                        Show cart
+                                    </Button>
+                                </td>
                             </tr>
                         )) }
                     </tbody>
                 </table>
+
+                {
+                    this.state.displayedCart !== null
+                    ? ( <CartPreview
+                            cart={ this.state.displayedCart }
+                            onClose={ () => this.setState({ displayedCart: null }) }
+                        /> )
+                    : ""
+                }
             </>
         );
     }
