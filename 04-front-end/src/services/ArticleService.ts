@@ -1,7 +1,20 @@
 import ArticleModel, { ArticlePrice } from '../../../03-back-end/src/components/article/model';
-import api from '../api/api';
+import api, { apiAsForm } from '../api/api';
 import EventRegister from '../api/EventRegister';
 import * as path from "path";
+
+export interface IAddArticle {
+    title: string;
+    excerpt: string;
+    description: string;
+    isPromoted: 0 | 1;
+    categoryId: number;
+    price: number;
+
+    features: Map<number, string>;
+
+    images: File[];
+}
 
 export default class ArticleService {
     public static getArticleById(articleId: number): Promise<ArticleModel|null> {
@@ -30,6 +43,49 @@ export default class ArticleService {
                     return resolve([]);
                 }
                 resolve(res.data as ArticleModel[]);
+            });
+        });
+    }
+
+    public static addArticle(data: IAddArticle): Promise<boolean> {
+        return new Promise<boolean>(resolve => {
+            const features: {
+                featureId: number;
+                value: string;
+            }[] = [];
+
+            data.features.forEach((value, key) => {
+                features.push({
+                    featureId: key,
+                    value: value,
+                });
+            });
+
+            const formData = new FormData();
+            formData.append("data", JSON.stringify({
+                title: data.title,
+                excerpt: data.excerpt,
+                description: data.description,
+                isActive: true,
+                isPromoted: data.isPromoted === 1,
+                price: data.price,
+                categoryId: data.categoryId,
+                features: features,
+            }));
+
+            for (let image of data.images) {
+                formData.append("image", image);
+            }
+
+            apiAsForm("post", "/article", "administrator", formData)
+            .then(res => {
+                if (res?.status !== "ok") {
+                    if (res.status === "login") EventRegister.emit("AUTH_EVENT", "force_login");
+
+                    return resolve(false);
+                }
+
+                resolve(true);
             });
         });
     }

@@ -35,7 +35,8 @@ class CategoryService extends BaseService<CategoryModel> {
             const data = await this.getAllByParentCategoryId(
                 item.categoryId,
                 {
-                    loadSubcategories: true,
+                    loadSubcategories: options.loadSubcategories,
+                    loadFeatures: options.loadFeatures,
                 }
             );
 

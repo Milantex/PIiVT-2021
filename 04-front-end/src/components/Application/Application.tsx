@@ -20,6 +20,7 @@ import CategoryDashboardEdit from '../Administrator/Dashboard/Category/CategoryD
 import FeatureDashboardList from '../Administrator/Dashboard/Feature/FeatureDashboardList';
 import CartPage from '../Cart/CartPage';
 import OrderDashboardList from '../Administrator/Dashboard/Order/OrderDashboardList';
+import ArticleDashboardAdd from '../Administrator/Dashboard/Article/ArticleDashboardAdd';
 
 class ApplicationState {
   authorizedRole: "user" | "administrator" | "visitor" = "visitor";
@@ -83,13 +84,13 @@ export default class Application extends React.Component {
           <div className="Application-header">
             Front-end aplikacije
           </div>
-  
+
           <TopMenu currentMenuType={ this.state.authorizedRole } />
-  
+
           <div className="Application-body">
             <Switch>
               <Route exact path="/" component={ HomePage } />
-  
+
               <Route path="/category/:cid?"
                      render={
                        (props: any) => {
@@ -97,18 +98,18 @@ export default class Application extends React.Component {
                        }
                      } />
               <Route path="/article/:aid" component={ ArticlePage } />
-  
+
               <Route path="/contact">
                 <ContactPage
                   title="Our location in Belgrade"
                   address="Danijelova 32, 11010 Beograd, Srbija"
                   phone="+381 11 30 94 094" />
               </Route>
-  
+
               <Route path="/profile">
                 My profile
               </Route>
-  
+
               <Route path="/user/register" component={UserRegistration} />
               <Route path="/user/login" component={UserLogin} />
               <Route path="/user/logout" component={UserLogout} />
@@ -122,9 +123,10 @@ export default class Application extends React.Component {
               <Route path="/dashboard/category/edit/:cid" component={CategoryDashboardEdit} />
               <Route path="/dashboard/category/features/:cid/list" component={FeatureDashboardList} />
               <Route exact path="/dashboard/order" component={OrderDashboardList} />
+              <Route exact path="/dashboard/article/new" component={ArticleDashboardAdd} />
             </Switch>
           </div>
-  
+
           <div>
               &copy; 2021...
           </div>

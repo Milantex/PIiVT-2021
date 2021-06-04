@@ -76,6 +76,72 @@ export default function api(
     });
 }
 
+export function apiAsForm(
+    method: ApiMethod,
+    path: string,
+    role: ApiRole,
+    body: FormData,
+    attemptToRefresh: boolean = true,
+): Promise<ApiResponse> {
+    return new Promise<ApiResponse>(resolve => {
+        axios({
+            method: method,
+            baseURL: AppConfiguration.API_URL,
+            url: path,
+            data: body,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + getAuthToken(role),
+            },
+        })
+        .then(res => responseHandler(res, resolve))
+        .catch(async err => {
+            if (attemptToRefresh && ("" + err).includes("401")) {
+                const newToken: string|null = await refreshToken(role);
+
+                if (newToken === null) {
+                    return resolve({
+                        status: 'login',
+                        data: null,
+                    });
+                }
+
+                saveAuthToken(role, newToken);
+
+                apiAsForm(method, path, role, body, false)
+                    .then(res => resolve(res))
+                    .catch(() => {
+                        resolve({
+                            status: 'login',
+                            data: null,
+                        });
+                    });
+
+                return;
+            }
+
+            if (err?.response?.status === 401) {
+                return resolve({
+                    status: 'login',
+                    data: null,
+                });
+            }
+
+            if (err?.response?.status === 403) {
+                return resolve({
+                    status: 'login',
+                    data: 'Wrong role',
+                });
+            }
+
+            resolve({
+                status: 'error',
+                data: err?.response,
+            });
+        });
+    });
+}
+
 function responseHandler(res: AxiosResponse<any>, resolve: (data: ApiResponse) => void) {
     if (res?.status < 200 || res?.status >= 300) {
         return resolve({
