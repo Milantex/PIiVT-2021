@@ -65,6 +65,34 @@ export default class CartPreview extends React.Component<CartPreviewProperties> 
                                     }
                                 </td>
                             </tr>
+                            <tr>
+                                <th>Order ID:</th>
+                                <td colSpan={4}>#{ this.props.cart.order?.orderId }</td>
+                            </tr>
+                            <tr>
+                                <th>Order date:</th>
+                                <td colSpan={4}>{ this.props.cart.order?.createdAt }</td>
+                            </tr>
+                            <tr>
+                                <th>Status:</th>
+                                <td colSpan={4}>{ this.props.cart.order?.status }</td>
+                            </tr>
+                            <tr>
+                                <th>Forename:</th>
+                                <td colSpan={4}>{ this.props.cart.user.forename }</td>
+                            </tr>
+                            <tr>
+                                <th>Surname:</th>
+                                <td colSpan={4}>{ this.props.cart.user.surname }</td>
+                            </tr>
+                            <tr>
+                                <th>E-mail:</th>
+                                <td colSpan={4}>{ this.props.cart.user.email }</td>
+                            </tr>
+                            <tr>
+                                <th>Address:</th>
+                                <td colSpan={4}>{ this.props.cart.user.postalAddress }</td>
+                            </tr>
                         </tfoot>
                     </table>
                 </Modal.Body>
