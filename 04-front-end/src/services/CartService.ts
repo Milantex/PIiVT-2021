@@ -1,4 +1,4 @@
-import CartModel from '../../../03-back-end/src/components/cart/model';
+import CartModel, { OrderStatus } from '../../../03-back-end/src/components/cart/model';
 import api from '../api/api';
 import EventRegister from '../api/EventRegister';
 import { MemoizeExpiring } from "typescript-memoize";
@@ -61,6 +61,15 @@ export default class CartService {
                 }
                 resolve(res.data);
             })
+        });
+    }
+
+    public static setOrderStatus(cartId: number, status: OrderStatus) {
+        api("put", "/cart/" + cartId, "administrator", { status: status })
+        .then(res => {
+            if (res.status !== "ok") return;
+            if (res.data.errorCode !== undefined) return;
+            EventRegister.emit("ORDER_EVENT", "order.updated", cartId);
         });
     }
 }
