@@ -1,6 +1,7 @@
 import ArticleModel from '../../../03-back-end/src/components/article/model';
 import api from '../api/api';
 import EventRegister from '../api/EventRegister';
+import * as path from "path";
 
 export default class ArticleService {
     public static getArticleById(articleId: number): Promise<ArticleModel|null> {
@@ -31,5 +32,19 @@ export default class ArticleService {
                 resolve(res.data as ArticleModel[]);
             });
         });
+    }
+
+    public static getThumbPath(url: string): string {
+        const directory = path.dirname(url);
+        const extension = path.extname(url);
+        const filename  = path.basename(url, extension);
+        return directory + "/" + filename + "-thumb" + extension;
+    }
+
+    public static getSmallPath(url: string): string {
+        const directory = path.dirname(url);
+        const extension = path.extname(url);
+        const filename  = path.basename(url, extension);
+        return directory + "/" + filename + "-small" + extension;
     }
 }

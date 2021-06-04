@@ -3,10 +3,10 @@ import CartModel from '../../../../03-back-end/src/components/cart/model';
 import { Card, InputGroup, Form, Button } from 'react-bootstrap';
 import EventRegister from '../../api/EventRegister';
 import CartService from '../../services/CartService';
-import * as path from "path";
 import { AppConfiguration } from '../../config/app.config';
 import "./CartPage.sass";
 import ConfirmAction from '../Misc/ConfirmAction';
+import ArticleService from '../../services/ArticleService';
 
 interface CartPageState {
     cart: CartModel|null;
@@ -25,7 +25,7 @@ export default class CartPage extends BasePage<{}> {
 
     constructor(props: any) {
         super(props);
-        
+
         this.state = {
             cart: null,
 
@@ -63,13 +63,6 @@ export default class CartPage extends BasePage<{}> {
 
     componentWillUnmount() {
         EventRegister.off("CART_EVENT", this.getCartData.bind(this));
-    }
-
-    getThumbPath(url: string): string {
-        const directory = path.dirname(url);
-        const extension = path.extname(url);
-        const filename  = path.basename(url, extension);
-        return directory + "/" + filename + "-thumb" + extension;
     }
 
     private onChangeQuantityInput(cartArticleId: number): (event: React.ChangeEvent<HTMLInputElement>) => void {
@@ -204,7 +197,7 @@ export default class CartPage extends BasePage<{}> {
                                     <tr key={ "cart-article-" + ca.cartArticleId }>
                                         <td>
                                             <img alt={ ca.article.title }
-                                                src={ this.getThumbPath(AppConfiguration.API_URL + "/" + ca.article.photos[0].imagePath ) }
+                                                src={ ArticleService.getThumbPath(AppConfiguration.API_URL + "/" + ca.article.photos[0].imagePath ) }
                                                 className="article-image" />
                                         </td>
                                         <td>

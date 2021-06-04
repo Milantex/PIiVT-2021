@@ -3,10 +3,9 @@ import ArticleModel from '../../../../03-back-end/src/components/article/model';
 import ArticleService from '../../services/ArticleService';
 import BasePage, { BasePageProperties } from '../BasePage/BasePage';
 import { Row, Col, Card, InputGroup, Form, Button } from 'react-bootstrap';
-import * as path from "path";
-import { AppConfiguration } from "../../config/app.config";
 import "./ArticlePage.sass";
 import CartService from '../../services/CartService';
+import { AppConfiguration } from '../../config/app.config';
 
 class ArticlePageProperties extends BasePageProperties {
     match?: {
@@ -56,13 +55,6 @@ export default class ArticlePage extends BasePage<ArticlePageProperties> {
         }
     }
 
-    getThumbPath(url: string): string {
-        const directory = path.dirname(url);
-        const extension = path.extname(url);
-        const filename  = path.basename(url, extension);
-        return directory + "/" + filename + "-thumb" + extension;
-    }
-
     private onChangeInput(field: "quantity"): (event: React.ChangeEvent<HTMLInputElement>) => void {
         return (event: React.ChangeEvent<HTMLInputElement>) => {
             this.setState({
@@ -104,7 +96,7 @@ export default class ArticlePage extends BasePage<ArticlePageProperties> {
                                         <Col key={ "article-photo-" + photo.photoId }
                                              xs={12} sm={6} md={4} lg={3} className="mt-3">
                                             <Card.Img variant="top"
-                                                src={ this.getThumbPath(AppConfiguration.API_URL + "/" + photo.imagePath) } />
+                                                src={ ArticleService.getThumbPath(AppConfiguration.API_URL + "/" + photo.imagePath) } />
                                         </Col>
                                     ))
                                 }
