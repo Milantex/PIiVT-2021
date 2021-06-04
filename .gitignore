@@ -4,6 +4,7 @@ temp/
 03-back-end/dist/
 03-back-end/static/uploads/
 03-back-end/.env
+03-back-end/package-lock.json
 
 04-front-end/node_modules/
 04-front-end/.pnp
@@ -18,3 +19,4 @@ temp/
 04-front-end/npm-debug.log*
 04-front-end/yarn-debug.log*
 04-front-end/yarn-error.log*
+04-front-end/package-lock.json

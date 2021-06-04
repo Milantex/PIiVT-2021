@@ -23,7 +23,7 @@ const Config: IConfig = {
         host: "localhost",
         port: 3306,
         user: "root",
-        password: "root",
+        password: "",
         database: "aplikacija",
         charset: "utf8",
         timezone: "+01:00",
